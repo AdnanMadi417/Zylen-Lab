@@ -1,0 +1,24 @@
+import React from "react";
+import AboutHero      from "components/public/about/AboutHero";
+import MissionVision  from "components/public/about/MissionVision";
+import TeamMembers    from "components/public/about/TeamMembers";
+import CoverageMap    from "components/public/about/CoverageMap";
+import Objectives     from "components/public/about/Objectives";
+import CoreValues     from "components/public/about/CoreValues";
+import PartnersGallery from "components/public/about/PartnersGallery";
+import CallToAction   from "components/public/about/CallToAction";
+
+export default function About() {
+  return (
+    <>
+      <AboutHero />
+      <MissionVision />
+      <TeamMembers />
+      <Objectives />
+      <CoreValues />
+      <CoverageMap />
+      <PartnersGallery />
+      <CallToAction />
+    </>
+  );
+}

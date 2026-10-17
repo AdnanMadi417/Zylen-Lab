@@ -1,0 +1,40 @@
+import React from "react";
+
+const IconButton = ({
+  onClick,
+  disabled,
+  loading,
+  icon,
+  bgColor = "bg-white",
+  textColor = "text-brand-800",
+  borderColor = "border-brand-500",
+  hoverTextColor = "hover:text-brand-800/75",
+  hoverBorderColor = "hover:border-brand-600",
+  text,
+  className = "",
+}) => {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled || loading}
+      className={`
+        inline-flex min-w-0 max-w-full items-center justify-center gap-1.5
+        rounded-xl border px-3.5 py-2 text-sm font-medium
+        transition-all duration-200 ease-in-out
+        enabled:hover:-translate-y-px enabled:active:translate-y-0 enabled:active:scale-[0.98]
+        disabled:cursor-not-allowed disabled:opacity-50 disabled:select-none
+        ${bgColor} ${textColor} ${borderColor} ${hoverTextColor} ${hoverBorderColor} ${className}
+      `}
+    >
+      {loading ? (
+        <span className="h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent" />
+      ) : (
+        icon && <span className="shrink-0 flex items-center">{icon}</span>
+      )}
+      {text && <span className="truncate">{text}</span>}
+    </button>
+  );
+};
+
+export default IconButton;

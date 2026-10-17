@@ -1,0 +1,96 @@
+import React from "react";
+import { Routes, Route, Navigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import logo from "assets/branding/haluan-logo.png";
+import routes from "routes.js";
+import LanguageSwitcher from "components/navbar/LanguageSwitcher";
+
+export default function Auth() {
+  const { i18n } = useTranslation();
+
+  React.useEffect(() => {
+    document.documentElement.dir  = i18n.language === "ar" ? "rtl" : "ltr";
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  const getRoutes = () =>
+    routes.map((route, key) =>
+      route.layout === "/auth" ? (
+        <Route path={`/${route.path}`} element={route.component} key={key} />
+      ) : null
+    );
+
+  return (
+    <div className="relative flex min-h-screen bg-slate-50 rtl:flex-row-reverse">
+
+      {/* Language toggle — always visible in the top-start corner of the form panel */}
+      <div className="absolute right-4 top-4 z-20">
+        <LanguageSwitcher />
+      </div>
+
+      {/* ── Left — Brand panel ── */}
+      <div className="relative hidden flex-col items-center justify-between bg-black px-10 py-14 lg:flex lg:w-[42%] rounded-br-[100px]">
+
+        {/* Decorative layer — clipped separately so the panel curve isn't cut */}
+        <div className="absolute inset-0 overflow-hidden rounded-br-[100px]">
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 bg-auth-grid bg-[size:40px_40px] opacity-[0.06]" />
+          {/* Glow blobs */}
+          <div className="absolute -top-32 -left-32 h-80 w-80 rounded-full bg-white/10 blur-[80px]" />
+          <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-brand-500/20 blur-[80px]" />
+        </div>
+
+        {/* Top — flag labels */}
+        <div className="relative z-10 flex items-center gap-2">
+          <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium tracking-widest text-white/70 uppercase">
+            🇲🇾 Malaysia · Palestine 🇵🇸
+          </span>
+        </div>
+
+        {/* Center — logo + identity */}
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <Link to="/" className="mb-7 flex h-44 w-44 items-center justify-center rounded-3xl bg-white p-4 shadow-2xl transition-opacity hover:opacity-90">
+            <img src={logo} alt="Haluan" className="h-full w-full object-contain" />
+          </Link>
+
+          <p className="text-xl font-bold leading-snug text-white" dir="rtl">
+            هالوان
+          </p>
+          <p className="mt-1.5 text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
+            Haluan
+          </p>
+
+          <div className="my-6 h-px w-10 bg-white/30" />
+
+          <p className="max-w-[260px] text-sm leading-relaxed text-white/80">
+            Standing in solidarity with Palestine — for justice, dignity, and freedom.
+          </p>
+        </div>
+
+        {/* Bottom — version badge */}
+        <div className="relative z-10">
+          <span className="text-xs text-white/40">Haluan Portal v1.0</span>
+        </div>
+      </div>
+
+      {/* ── Right — Form panel ── */}
+      <div className="flex w-full flex-col items-center justify-center px-6 py-12 lg:w-[58%]">
+
+        {/* Mobile logo */}
+        <Link to="/" className="mb-8 flex flex-col items-center lg:hidden">
+          <img src={logo} alt="Haluan" className="h-20 w-20 object-contain" />
+          <p className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-navy-700">Haluan</p>
+        </Link>
+
+        <div className="w-full max-w-[420px]">
+          <Routes>
+            {getRoutes()}
+            <Route path="/" element={<Navigate to="/auth/sign-in" replace />} />
+          </Routes>
+        </div>
+
+      </div>
+
+    </div>
+  );
+}

@@ -1,0 +1,99 @@
+import React, { useState } from "react";
+import { MdSearch } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+import { validate } from "./utils/validation";
+import { WRAPPER, LABEL, ERROR_MSG } from "./utils/fieldStyles";
+
+const CheckSimpleBoxGroup = ({
+  label, field, options, formData,
+  updateFormData, errors, required = false, rules = [],
+}) => {
+  const { t } = useTranslation();
+  const [search, setSearch] = useState("");
+  const [localError, setLocalError] = useState(null);
+
+  const externalError = errors?.[field];
+  const displayError = localError || externalError;
+
+  const isSelected = (id) => (formData[field] || []).includes(id);
+
+  const filteredOptions = options.filter((o) =>
+    o.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const toggleSelection = (id) => {
+    const selected = formData[field] || [];
+    const next = selected.includes(id)
+      ? selected.filter((i) => i !== id)
+      : [...selected, id];
+    updateFormData(field, next);
+    setLocalError(validate(next, rules));
+  };
+
+  return (
+    <div className={WRAPPER}>
+      <div className="w-full space-y-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+        <div className="flex items-center justify-between">
+          <label className={LABEL}>
+            {label} {required && <span className="text-red-500">*</span>}
+          </label>
+          {filteredOptions.length > 0 && (
+            <span className="text-xs text-slate-400">
+              {t("common.selected_count", { count: filteredOptions.filter((o) => isSelected(o.id)).length })}
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1">
+            <MdSearch className="absolute ltr:left-3 rtl:right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              placeholder={t("common.search_placeholder")}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="h-9 w-full rounded-lg border border-slate-200 bg-white ltr:pl-9 ltr:pr-3 rtl:pr-9 rtl:pl-3 text-sm text-start outline-none transition-all focus:border-brand-700 focus:bg-slate-100/70 placeholder:text-slate-400"
+            />
+          </div>
+          {search && (
+            <button type="button" onClick={() => setSearch("")} className="text-xs text-slate-400 hover:text-slate-600">
+              {t("common.clear")}
+            </button>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-2 pb-1">
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option) => {
+              const selected = isSelected(option.id);
+              return (
+                <label
+                  key={option.id}
+                  className={`flex cursor-pointer items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm font-medium transition-all ${
+                    selected
+                      ? "border-brand-500 bg-brand-500/10 text-brand-900"
+                      : "border-slate-200 bg-white text-slate-500 hover:border-slate-300"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selected}
+                    onChange={() => toggleSelection(option.id)}
+                    className="accent-brand-500 h-3.5 w-3.5"
+                  />
+                  {option.name}
+                </label>
+              );
+            })
+          ) : (
+            <p className="w-full py-4 text-center text-sm text-slate-400">{t("common.no_results")}</p>
+          )}
+        </div>
+      </div>
+
+      {displayError && <p className={ERROR_MSG}>{displayError}</p>}
+    </div>
+  );
+};
+
+export default CheckSimpleBoxGroup;

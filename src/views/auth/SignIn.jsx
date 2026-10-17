@@ -1,0 +1,242 @@
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { MdEmail, MdArrowBack, MdArrowForward } from "react-icons/md";
+import InputField    from "components/form/InputField";
+import PasswordField from "components/form/PasswordField";
+import AlertBanner   from "components/ui/AlertBanner";
+import Button        from "components/ui/buttons/Button";
+import Loading       from "components/loading/Loading";
+import { validate }  from "components/form/utils/validation";
+import Checkbox      from "components/checkbox";
+import { useAuth, useLogin, useVerifyOtp, useResendOtp } from "components/features/auth/hooks";
+import { getRoleHome } from "components/features/auth/utils";
+
+const EMAIL_RULES    = [{ required: true }, { email: true }];
+const PASSWORD_RULES = [{ required: true }, { minLength: 8 }];
+
+/* ──────────────────────────────────────────────
+   Step 1 — Email + Password
+────────────────────────────────────────────── */
+const LoginStep = ({ onOtpRequired }) => {
+  const { t }                                         = useTranslation();
+  const { completeLogin }                             = useAuth();
+  const { execute: login, loading, error: loginError } = useLogin();
+  const [formData, setFormData]         = useState({ email: "", password: "" });
+  const [errors, setErrors]             = useState({});
+  const [keepLoggedIn, setKeepLoggedIn] = useState(false);
+
+  const updateFormData = (field, value) =>
+    setFormData((prev) => ({ ...prev, [field]: value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newErrors = {};
+    const emailErr    = validate(formData.email,    EMAIL_RULES);
+    const passwordErr = validate(formData.password, PASSWORD_RULES);
+    if (emailErr)    newErrors.email    = emailErr;
+    if (passwordErr) newErrors.password = passwordErr;
+    if (Object.keys(newErrors).length) { setErrors(newErrors); return; }
+
+    setErrors({});
+
+    try {
+      const data = await login({ email: formData.email, password: formData.password });
+      if (data.requires_otp) {
+        onOtpRequired({ email: formData.email, channel: data.channel });
+      } else {
+        await completeLogin();
+      }
+    } catch {
+      // error state handled by useLogin hook
+    }
+  };
+
+  return (
+    <>
+      <div className="mb-7">
+        <span className="inline-block rounded-full bg-brand-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-brand-800">
+          {t("auth.portal_access")}
+        </span>
+        <h1 className="mt-3 text-2xl font-bold text-navy-700">{t("auth.welcome_back")}</h1>
+        <p className="mt-1 text-sm text-slate-400">{t("auth.sign_in_subtitle")}</p>
+      </div>
+
+      <AlertBanner message={loginError} />
+
+      <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-1">
+        <InputField
+          label={t("auth.email_address")} field="email" type="email"
+          placeholder="you@example.com"
+          formData={formData} errors={errors}
+          updateFormData={updateFormData} rules={EMAIL_RULES}
+        />
+        <PasswordField
+          label={t("auth.password")} field="password"
+          placeholder={t("auth.password_placeholder")}
+          formData={formData} errors={errors}
+          updateFormData={updateFormData} rules={PASSWORD_RULES}
+        />
+
+        <div className="mb-5 flex items-center justify-between">
+          <label className="flex cursor-pointer items-center gap-2">
+            <Checkbox color="brand" checked={keepLoggedIn} onChange={(e) => setKeepLoggedIn(e.target.checked)} extra="cursor-pointer" />
+            <span className="text-sm text-slate-600">{t("auth.remember_me")}</span>
+          </label>
+          <a href="/auth/forgot-password" className="text-sm font-medium text-brand-800 transition-colors duration-200 hover:text-brand-900">
+            {t("auth.forgot_password")}
+          </a>
+        </div>
+
+        <Button
+          type="submit"
+          loading={loading}
+          text={t("auth.sign_in")}
+          className="h-12 w-full"
+        />
+      </form>
+
+      <p className="mt-6 text-center text-sm text-slate-400">
+        {t("auth.no_account")}{" "}
+        <Link to="/register" className="font-medium text-brand-800 transition-colors duration-200 hover:text-brand-800">
+          {t("auth.create_one")}
+        </Link>
+      </p>
+
+    </>
+  );
+};
+
+/* ──────────────────────────────────────────────
+   Step 2 — OTP Verification
+────────────────────────────────────────────── */
+const OtpStep = ({ email, channel, onBack }) => {
+  const { t }                                               = useTranslation();
+  const { completeLogin }                                   = useAuth();
+  const { execute: verifyOtp, loading, error: otpError }    = useVerifyOtp();
+  const { execute: resendOtp, loading: resending }          = useResendOtp();
+  const [code, setCode]   = useState("");
+  const [resent, setResent] = useState(false);
+
+  const isReady = code.trim().length === 6;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!isReady) return;
+    try {
+      await verifyOtp({ email, code: code.trim() });
+      await completeLogin();
+    } catch {
+      // error state handled by useVerifyOtp hook
+    }
+  };
+
+  const handleResend = async () => {
+    setResent(false);
+    setCode("");
+    try {
+      await resendOtp({ email, purpose: "login" });
+      setResent(true);
+    } catch {
+      // error handled by useResendOtp
+    }
+  };
+
+  return (
+    <>
+      <div className="mb-7">
+        <button onClick={onBack} className="mb-4 inline-flex items-center gap-1.5 text-sm text-slate-400 transition-colors hover:text-slate-700">
+          <MdArrowBack className="ltr:block rtl:hidden h-4 w-4" />
+          <MdArrowForward className="ltr:hidden rtl:block h-4 w-4" />
+          {t("auth.back")}
+        </button>
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500/10">
+          <MdEmail className="h-6 w-6 text-brand-800" />
+        </div>
+        <h1 className="mt-4 text-2xl font-bold text-navy-700">{t("auth.verify_identity")}</h1>
+        <p className="mt-1 text-sm text-slate-400">
+          {t("auth.otp_sent_via")}{" "}
+          <span className="font-semibold text-slate-600">{channel}</span>{" "}
+          {t("auth.otp_sent_to")}{" "}
+          <span className="font-semibold text-slate-600">{email}</span>
+        </p>
+      </div>
+
+      <AlertBanner message={otpError} />
+      {resent && <AlertBanner message={t("auth.new_link_sent")} variant="success" />}
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div>
+          <label className="mb-1.5 block text-xs font-semibold text-slate-700">
+            {t("auth.six_digit_code")}
+          </label>
+          <input
+            type="text"
+            inputMode="numeric"
+            maxLength={6}
+            value={code}
+            onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+            placeholder="——————"
+            autoFocus
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center text-2xl font-bold tracking-[0.6em] text-slate-900 outline-none transition-all duration-200 focus:border-brand-700 focus:bg-white placeholder:tracking-normal placeholder:text-base placeholder:font-normal"
+          />
+          <p className="mt-1.5 text-center text-xs text-slate-400">
+            {code.length}/6 {t("auth.digits_entered")}
+          </p>
+        </div>
+
+        <Button
+          type="submit"
+          disabled={!isReady}
+          loading={loading}
+          text={t("auth.verify_sign_in")}
+          className="h-12 w-full"
+        />
+      </form>
+
+      <p className="mt-6 text-center text-sm text-slate-400">
+        {t("auth.didnt_receive")}{" "}
+        <button
+          onClick={handleResend}
+          disabled={resending}
+          className="font-medium text-brand-800 transition-colors hover:text-brand-900 disabled:opacity-50"
+        >
+          {resending ? t("auth.sending") : t("auth.resend_otp")}
+        </button>
+      </p>
+    </>
+  );
+};
+
+/* ──────────────────────────────────────────────
+   Main SignIn — orchestrates steps
+────────────────────────────────────────────── */
+export default function SignIn() {
+  const { t } = useTranslation();
+  const { isAuthenticated, user, loading: authLoading } = useAuth();
+  const [step, setStep]       = useState("login"); // "login" | "otp"
+  const [otpMeta, setOtpMeta] = useState({ email: "", channel: "" });
+
+  // Already logged in — no reason to show the sign-in form again.
+  if (authLoading) return <Loading text={t("common.loading")} />;
+  if (isAuthenticated) return <Navigate to={getRoleHome(user?.role)} replace />;
+
+  return (
+    <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-100">
+      {step === "login" ? (
+        <LoginStep
+          onOtpRequired={({ email, channel }) => {
+            setOtpMeta({ email, channel });
+            setStep("otp");
+          }}
+        />
+      ) : (
+        <OtpStep
+          email={otpMeta.email}
+          channel={otpMeta.channel}
+          onBack={() => setStep("login")}
+        />
+      )}
+    </div>
+  );
+}
