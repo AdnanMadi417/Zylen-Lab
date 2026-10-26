@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../../hooks/useUiTemplate";
 import {
   MdFolderSpecial,
   MdPeople,
@@ -28,7 +28,7 @@ const STATUS_BADGE = {
 };
 
 const DataDisplaySection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const s = (k) => t(`styleGuide.data.${k}`);
   const [rating, setRating] = useState(4);
 

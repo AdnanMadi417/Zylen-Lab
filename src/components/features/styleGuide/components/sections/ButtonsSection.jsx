@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../../hooks/useUiTemplate";
 import { MdAdd, MdEdit, MdDelete, MdDownload, MdVisibility, MdSave } from "react-icons/md";
 import Button from "components/ui/buttons/Button";
 import NextButton from "components/ui/buttons/NextButton";
@@ -17,7 +17,7 @@ const StateLabel = ({ children }) => (
 );
 
 const ButtonsSection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const s = (k) => t(`styleGuide.buttons.${k}`);
 
   return (

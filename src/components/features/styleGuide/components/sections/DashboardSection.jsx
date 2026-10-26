@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../../hooks/useUiTemplate";
 import { MdAdd, MdEvent, MdArticle, MdPeople } from "react-icons/md";
 import QuickActionsGrid from "components/ui/dashboard/QuickActionsGrid";
 import NotificationsFeed from "components/ui/dashboard/NotificationsFeed";
@@ -8,7 +8,7 @@ import GuideSection from "../GuideSection";
 import ComponentShowcase from "../ComponentShowcase";
 
 const DashboardSection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const s = (k) => t(`styleGuide.dashboard.${k}`);
 
   // `to` points back at the guide itself so clicks in the demo are harmless.

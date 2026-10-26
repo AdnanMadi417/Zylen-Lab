@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MdTranslate, MdPrint } from "react-icons/md";
-import logo from "assets/branding/haluan-logo.png";
+import ClientLogo from "./ClientLogo";
 import BrandIdentitySection from "./sections/BrandIdentitySection";
 import TypographySection from "./sections/TypographySection";
 import FoundationsSection from "./sections/FoundationsSection";
@@ -11,6 +11,13 @@ import FeedbackSection from "./sections/FeedbackSection";
 import DataDisplaySection from "./sections/DataDisplaySection";
 import DashboardSection from "./sections/DashboardSection";
 import { SECTION_IDS, sectionNumber } from "../constants/sections";
+import {
+  UiTemplateProvider,
+  useApplyClientColors,
+  useClientName,
+  useGuideT,
+  useUiTemplate,
+} from "../hooks/useUiTemplate";
 
 // To add a section: create it under sections/, give its <GuideSection> an id,
 // add that id to constants/sections.js (sets the order + number) and map it here.
@@ -48,10 +55,14 @@ const useActiveSection = (ids) => {
   return active;
 };
 
-const StyleGuide = () => {
-  const { t, i18n } = useTranslation();
+const GuidePage = () => {
+  const { i18n } = useTranslation();
+  const t = useGuideT();
+  const client = useUiTemplate();
+  const clientName = useClientName();
   const isAr = i18n.language === "ar";
   const active = useActiveSection(SECTION_IDS);
+  useApplyClientColors(client.colors);
 
   // Direction + lang follow the selected language, as in PublicLayout.
   useEffect(() => {
@@ -66,12 +77,12 @@ const StyleGuide = () => {
     meta.name = "robots";
     meta.content = "noindex, nofollow";
     document.head.appendChild(meta);
-    document.title = `${t("styleGuide.meta_title")} · Haluan`;
+    document.title = `${t("styleGuide.meta_title")} · ${clientName}`;
     return () => {
       meta.remove();
       document.title = prevTitle;
     };
-  }, [t]);
+  }, [t, clientName]);
 
   const toggleLanguage = () => i18n.changeLanguage(isAr ? "en" : "ar");
 
@@ -81,9 +92,9 @@ const StyleGuide = () => {
       <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur print:static">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">
-            <img src={logo} alt="Haluan" className="h-9 w-9 shrink-0 rounded-md object-contain" />
+            <ClientLogo className="h-9 w-9 shrink-0 rounded-md text-base" />
             <div className="min-w-0">
-              <p className="truncate text-sm font-bold text-slate-900">{t("styleGuide.org_name")}</p>
+              <p className="truncate text-sm font-bold text-slate-900">{clientName}</p>
               <p className="truncate text-xs text-slate-400">{t("styleGuide.meta_title")}</p>
             </div>
           </div>
@@ -98,7 +109,7 @@ const StyleGuide = () => {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#000000] px-3.5 py-2 text-xs font-semibold text-brand-500 transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-2 text-xs font-semibold text-brand-500 transition-opacity hover:opacity-90"
             >
               <MdTranslate className="h-4 w-4" /> {isAr ? "English" : "العربية"}
             </button>
@@ -107,11 +118,11 @@ const StyleGuide = () => {
       </header>
 
       {/* ── Hero ── */}
-      <div className="relative overflow-hidden bg-[#000000]">
+      <div className="relative overflow-hidden bg-ink">
         <div className="absolute inset-0 bg-dot-white bg-[length:22px_22px]" />
         <div className="absolute -top-24 h-72 w-72 rounded-full bg-brand-500/20 blur-3xl ltr:right-0 rtl:left-0" />
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24">
-          <span className="inline-block rounded-full bg-brand-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#000000]">
+          <span className="inline-block rounded-full bg-brand-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-ink">
             {t("styleGuide.hero.badge")}
           </span>
           <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl">
@@ -124,11 +135,9 @@ const StyleGuide = () => {
             <span className="h-2 w-8 rounded-full bg-brand-500/25" />
             <span className="h-2 w-8 rounded-full bg-white" />
           </div>
-          <img
-            src={logo}
-            alt=""
-            aria-hidden="true"
-            className="absolute end-6 top-1/2 hidden h-56 w-56 -translate-y-1/2 object-contain lg:block"
+          <ClientLogo
+            decorative
+            className="absolute end-6 top-1/2 hidden h-56 w-56 -translate-y-1/2 rounded-3xl text-8xl lg:flex"
           />
         </div>
       </div>
@@ -173,5 +182,12 @@ const StyleGuide = () => {
     </div>
   );
 };
+
+/** A client's UI template page. `client` is an entry from constants/clients/. */
+const StyleGuide = ({ client }) => (
+  <UiTemplateProvider value={client}>
+    <GuidePage />
+  </UiTemplateProvider>
+);
 
 export default StyleGuide;

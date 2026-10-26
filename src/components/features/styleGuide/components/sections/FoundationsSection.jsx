@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../../hooks/useUiTemplate";
 import GuideSection from "../GuideSection";
 import { SPACING, RADII, SHADOWS, BREAKPOINTS } from "../../constants/tokens";
 
@@ -11,7 +11,7 @@ const Panel = ({ title, children }) => (
 );
 
 const FoundationsSection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const maxBp = BREAKPOINTS[BREAKPOINTS.length - 1].px;
 
   return (

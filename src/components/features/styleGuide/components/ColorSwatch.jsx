@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../hooks/useUiTemplate";
 
 // ── Colour maths ────────────────────────────────────────────────────────────
 
@@ -63,7 +63,7 @@ export const ContrastBadge = ({ fg, bg = "#FFFFFF" }) => {
 // ── Proposed tag ────────────────────────────────────────────────────────────
 
 export const ProposedTag = ({ className = "" }) => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   return (
     <span className={`rounded-full bg-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-800 shadow-sm ring-1 ring-amber-300 ${className}`}>
       {t("styleGuide.brand.proposed")}
@@ -81,7 +81,7 @@ export const ProposedTag = ({ className = "" }) => {
  *        proposed – role assignment awaiting approval (adds a tag + dashed border)
  */
 export const ColorCard = ({ name, hex, token, alpha, note, size = "md", proposed = false, children }) => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const [copied, copy] = useCopy();
 
   return (
@@ -128,7 +128,7 @@ export const ColorCard = ({ name, hex, token, alpha, note, size = "md", proposed
 
 /** Horizontal 50–900 strip. Each cell shows shade, HEX and token on hover/focus. */
 export const ScaleStrip = ({ name, prefix, shades, highlight }) => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const [copiedHex, setCopiedHex] = useState(null);
 
   const copy = (hex) =>

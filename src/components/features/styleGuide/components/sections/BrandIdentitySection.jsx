@@ -1,20 +1,10 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { MdCheck, MdClose, MdLightbulbOutline, MdWarningAmber } from "react-icons/md";
-import logo from "assets/branding/haluan-logo.png";
 import GuideSection from "../GuideSection";
-import { ColorCard, ScaleStrip, ContrastBadge, ProposedTag, toCss } from "../ColorSwatch";
-import {
-  PRIMARY,
-  LOGO_BLACK,
-  SCALES,
-  SECONDARY_ACCENT,
-  SURFACES,
-  TEXT,
-  SEMANTIC,
-  BORDERS,
-  PROPOSALS,
-} from "../../constants/colors";
+import ClientLogo from "../ClientLogo";
+import { ColorCard, ScaleStrip, ContrastBadge, ProposedTag, toCss, contrastRatio } from "../ColorSwatch";
+import { getBrandColors, SEMANTIC } from "../../constants/colors";
+import { useGuideT, useUiTemplate } from "../../hooks/useUiTemplate";
 
 const Group = ({ title, intro, children }) => (
   <div>
@@ -25,7 +15,10 @@ const Group = ({ title, intro, children }) => (
 );
 
 const BrandIdentitySection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
+  const client = useUiTemplate();
+  const { PRIMARY, INK, SCALES, SECONDARY_ACCENT, SURFACES, TEXT, BORDERS } = getBrandColors(client.colors);
+  const PROPOSALS = client.proposals;
   const s = (k, o) => t(`styleGuide.brand.${k}`, o);
 
   return (
@@ -33,32 +26,31 @@ const BrandIdentitySection = () => {
       {/* ── Primary brand colour ── */}
       <div className="grid overflow-hidden rounded-primary border border-slate-200 lg:grid-cols-5">
         <div className="relative flex min-h-[260px] flex-col justify-between p-8 lg:col-span-3" style={{ backgroundColor: PRIMARY.hex }}>
-          {/* Logo black isn't a palette token (see proposals), so it's applied as an arbitrary value. */}
-          <span className="w-fit rounded-full bg-[#000000] px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-500">
+          <span className="w-fit rounded-full bg-ink px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-500">
             {s("primary_badge")}
           </span>
-          <div className="text-[#000000]">
+          <div className="text-ink">
             <p className="text-4xl font-bold">{s(`names.${PRIMARY.nameKey}`)}</p>
             <p className="mt-2 font-mono text-lg" dir="ltr">{PRIMARY.hex}</p>
             <div className="mt-3 flex flex-wrap gap-2" dir="ltr">
-              <code className="rounded bg-[#000000]/10 px-2 py-0.5 font-mono text-xs">{PRIMARY.token}</code>
+              <code className="rounded bg-ink/10 px-2 py-0.5 font-mono text-xs">{PRIMARY.token}</code>
               {PRIMARY.aliases.map((a) => (
-                <code key={a} className="rounded bg-[#000000]/10 px-2 py-0.5 font-mono text-xs">{a}</code>
+                <code key={a} className="rounded bg-ink/10 px-2 py-0.5 font-mono text-xs">{a}</code>
               ))}
             </div>
           </div>
         </div>
         <div className="flex flex-col justify-between gap-6 bg-white p-8 lg:col-span-2">
           <div className="flex items-center gap-4">
-            <img src={logo} alt="Haluan" className="h-24 w-24 shrink-0 rounded-xl object-contain" />
+            <ClientLogo className="h-24 w-24 shrink-0 rounded-xl text-3xl" />
             <p className="text-sm leading-relaxed text-slate-500">{s("primary_desc")}</p>
           </div>
           <div className="flex flex-col gap-2 text-sm">
             {[
-              { fg: LOGO_BLACK.hex, key: "pair_black", ok: true },
-              { fg: SCALES.navy.shades[700], key: "pair_navy", ok: true },
-              { fg: "#FFFFFF", key: "pair_white", ok: false },
-            ].map((p) => (
+              { fg: INK.hex, key: "pair_black" },
+              { fg: SCALES.navy.shades[700], key: "pair_navy" },
+              { fg: "#FFFFFF", key: "pair_white" },
+            ].map((p) => ({ ...p, ok: contrastRatio(p.fg, PRIMARY.hex) >= 4.5 })).map((p) => (
               <div key={p.key} className="flex items-center justify-between gap-3">
                 <span className="flex items-center gap-2 text-slate-700">
                   {p.ok ? <MdCheck className="h-4 w-4 text-slate-900" /> : <MdClose className="h-4 w-4 text-slate-400" />}
@@ -197,6 +189,7 @@ const BrandIdentitySection = () => {
       </Group>
 
       {/* ── Audit notes & proposals (not applied) ── */}
+      {PROPOSALS.length > 0 && (
       <div className="rounded-primary border border-amber-200 bg-amber-50/60 p-6 print:break-inside-avoid">
         <div className="flex items-start gap-3">
           <MdLightbulbOutline className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
@@ -233,6 +226,7 @@ const BrandIdentitySection = () => {
           ))}
         </ul>
       </div>
+      )}
     </GuideSection>
   );
 };

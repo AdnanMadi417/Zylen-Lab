@@ -9,10 +9,20 @@ import BeneficiaryLayout   from "layouts/beneficiary";
 import AuthLayout          from "layouts/auth";
 import PublicLayout        from "layouts/public";
 import StyleGuidePage      from "views/public/styleGuide";
+import { CLIENTS }         from "components/features/styleGuide/constants/clients";
 
-// While true, the style guide is the only reachable page: every other URL
-// redirects to /style-guide. Set to false to restore the full site.
+// While true, client UI templates are the only reachable pages (zylen-lab
+// mode). Set to false to restore the full site.
 const STYLE_GUIDE_ONLY = true;
+
+// One unlisted page per client: /ui-template-<client>-<year>.
+// Old /style-guide links go to the Haluan template.
+const uiTemplateRoutes = () => [
+  ...CLIENTS.map((client) => (
+    <Route key={client.id} path={client.slug} element={<StyleGuidePage client={client} />} />
+  )),
+  <Route key="style-guide" path="style-guide" element={<Navigate to="/ui-template-haluan-2026" replace />} />,
+];
 
 const RedirectToAuth = ({ to }) => {
   const { search } = useLocation();
@@ -21,8 +31,9 @@ const RedirectToAuth = ({ to }) => {
 
 const StyleGuideOnlyRoutes = () => (
   <Routes>
-    <Route path="style-guide" element={<StyleGuidePage />} />
-    <Route path="*" element={<Navigate to="/style-guide" replace />} />
+    {uiTemplateRoutes()}
+    {/* No index of templates on purpose — clients shouldn't discover each other. */}
+    <Route path="*" element={null} />
   </Routes>
 );
 
@@ -41,8 +52,8 @@ const App = () => (
       {/* Old register URL → new /apply */}
       <Route path="register" element={<Navigate to="/apply" replace />} />
 
-      {/* Unlisted client-facing style guide — standalone, no navbar/footer */}
-      <Route path="style-guide" element={<StyleGuidePage />} />
+      {/* Unlisted client UI templates — standalone, no navbar/footer */}
+      {uiTemplateRoutes()}
 
       <Route path="/*" element={<PublicLayout />} />
 

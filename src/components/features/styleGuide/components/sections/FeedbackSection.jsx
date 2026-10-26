@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../../hooks/useUiTemplate";
 import { MdDelete, MdEvent, MdInbox } from "react-icons/md";
 import AlertBanner from "components/ui/AlertBanner";
 import Modal from "components/ui/modals/Modal";
@@ -13,7 +13,7 @@ import GuideSection from "../GuideSection";
 import ComponentShowcase from "../ComponentShowcase";
 
 const FeedbackSection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const s = (k) => t(`styleGuide.feedback.${k}`);
   const toast = useToast();
   const [modalOpen, setModalOpen] = useState(false);

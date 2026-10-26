@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../../hooks/useUiTemplate";
 import {
   InputField,
   PasswordField,
@@ -17,7 +17,7 @@ import ComponentShowcase from "../ComponentShowcase";
 import useDemoForm from "../../hooks/useDemoForm";
 
 const FormsSection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const s = (k) => t(`styleGuide.forms.${k}`);
   const [search, setSearch] = useState("");
 

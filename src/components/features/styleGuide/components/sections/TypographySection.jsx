@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../../hooks/useUiTemplate";
 import GuideSection from "../GuideSection";
 import { FONTS, TYPE_SCALE } from "../../constants/tokens";
 
@@ -10,7 +10,7 @@ const SAMPLE_GLYPHS = {
 };
 
 const TypographySection = () => {
-  const { t } = useTranslation();
+  const t = useGuideT();
 
   return (
     <GuideSection

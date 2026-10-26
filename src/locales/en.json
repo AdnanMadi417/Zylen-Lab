@@ -2489,8 +2489,7 @@
   },
   "styleGuide": {
     "meta_title": "Brand & UI Style Guide",
-    "org_name": "Haluan",
-    "footer": "© {{year}} Haluan · Brand & UI Style Guide",
+    "footer": "© {{year}} {{client}} · Brand & UI Style Guide",
     "ui": {
       "show_code": "Show code",
       "hide_code": "Hide code",
@@ -2501,31 +2500,31 @@
     "hero": {
       "badge": "Version 1.0",
       "title": "Brand & UI Style Guide",
-      "subtitle": "The visual language behind the Haluan platform: our colours, typography and the interface components used across the website and dashboards. Every example on this page is the live component used in the product."
+      "subtitle": "The visual language behind the {{client}} platform: our colours, typography and the interface components used across the website and dashboards. Every example on this page is the live component used in the product."
     },
     "brand": {
       "title": "Brand Identity & Colors",
-      "intro": "Haluan's identity is built on two colours taken from the logo: a warm gold and black. Navy and neutral greys support them in the interface. Every swatch shows its HEX value and design token.",
+      "intro": "{{client}}'s identity is built on a primary brand colour and a dark ink colour taken from the logo. Navy and neutral greys support them in the interface. Every swatch shows its HEX value and design token.",
       "primary_badge": "Primary brand colour",
-      "primary_desc": "The signature gold of the Haluan logo. Use it for brand moments, highlights, badges and key accents. Always pair it with black or navy text.",
-      "pair_navy": "Navy text on gold",
-      "pair_white": "White text on gold",
+      "primary_desc": "The signature colour of the {{client}} logo. Use it for brand moments, highlights, badges and key accents.",
+      "pair_navy": "Navy text on the brand colour",
+      "pair_white": "White text on the brand colour",
       "click_to_copy": "Click to copy",
       "base": "Base",
       "names": {
-        "brand_gold": "Brand Gold",
+        "brand_gold": "Brand Primary",
         "navy": "Navy",
-        "logo_black": "Logo Black",
+        "logo_black": "Brand Ink",
         "navy_deep": "Deep Navy",
         "slate": "Neutral (Slate)"
       },
       "palette_title": "Primary palette",
-      "palette_intro": "Tints and shades of the brand gold from 50 to 900. All ten shades are already defined, so no new shades are needed.",
+      "palette_intro": "Tints and shades of the brand colour from 50 to 900.",
       "secondary_title": "Secondary & accent colours",
-      "secondary_intro": "Supporting colours that work with the gold. Green is used only for success states and is not part of the Haluan brand.",
+      "secondary_intro": "Supporting colours that work with the brand colour. Green is used only for success states and is not part of the {{client}} brand.",
       "role_navy": "Headings, statistics and dark interface surfaces.",
       "surface_title": "Background & surface",
-      "surface_intro": "The layers that pages and components sit on, from the page canvas to gold-tinted and dark surfaces.",
+      "surface_intro": "The layers that pages and components sit on, from the page canvas to brand-tinted and dark surfaces.",
       "surface_page": "Page / card",
       "surface_subtle": "Subtle surface",
       "surface_muted": "Muted / hover",
@@ -2564,16 +2563,16 @@
       "border_focus": "Focus / selected",
       "border_error": "Error",
       "proposals_title": "Audit notes & proposals",
-      "proposals_intro": "Remaining gaps found while aligning the platform with the Haluan brand. These are suggestions for approval only.",
+      "proposals_intro": "Remaining gaps found while aligning the platform with the {{client}} brand. These are suggestions for approval only.",
       "proposals": {
         "muted_text": "Muted text (slate-400) is 2.6:1 on white, below the 4.5:1 WCAG AA minimum. Proposal: use slate-500 for readable text and keep slate-400 for placeholders and icons.",
         "disabled_text": "There is no dedicated disabled text colour. Proposal: add slate-300 as the disabled text colour.",
         "red_50": "red-50 is defined as a translucent value (#EE5D501A), unlike every other 50 shade. Proposal: a solid #FEF2F2."
       },
-      "pair_black": "Black text on gold (logo)",
+      "pair_black": "Ink text on the brand colour (logo)",
       "no_token": "No token yet",
       "proposed": "Proposed",
-      "role_black": "The logo's black. Use it for the footer, dark heroes, gold-on-black brand moments and strong text on gold.",
+      "role_black": "The logo's dark ink. Use it for the footer, dark heroes, brand moments on dark backgrounds and strong text on the brand colour.",
       "role_navy_deep": "Darkest navy, for hero backgrounds and deep surfaces.",
       "role_slate": "Primary text colour and neutral interface greys.",
       "surface_selected": "Selected / active"
@@ -2757,6 +2756,25 @@
       "task_1": "Review 4 pending applications",
       "task_2": "Reply to 2 contact messages",
       "task_3": "Publish next week's event"
+    }
+  },
+  "uiTemplates": {
+    "haluan": {
+      "brand": {
+        "intro": "Haluan's identity is built on two colours taken from the logo: a warm gold and black. Navy and neutral greys support them in the interface. Every swatch shows its HEX value and design token.",
+        "primary_desc": "The signature gold of the Haluan logo. Use it for brand moments, highlights, badges and key accents. Always pair it with black or navy text.",
+        "pair_navy": "Navy text on gold",
+        "pair_white": "White text on gold",
+        "pair_black": "Black text on gold (logo)",
+        "names": {
+          "brand_gold": "Brand Gold",
+          "logo_black": "Logo Black"
+        },
+        "palette_intro": "Tints and shades of the brand gold from 50 to 900. All ten shades are already defined, so no new shades are needed.",
+        "secondary_intro": "Supporting colours that work with the gold. Green is used only for success states and is not part of the Haluan brand.",
+        "surface_intro": "The layers that pages and components sit on, from the page canvas to gold-tinted and dark surfaces.",
+        "role_black": "The logo's black. Use it for the footer, dark heroes, gold-on-black brand moments and strong text on gold."
+      }
     }
   }
 }

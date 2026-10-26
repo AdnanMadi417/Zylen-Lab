@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useGuideT } from "../hooks/useUiTemplate";
 import { MdCode, MdContentCopy, MdCheck } from "react-icons/md";
 
 /**
@@ -14,7 +14,7 @@ import { MdCode, MdContentCopy, MdCheck } from "react-icons/md";
  *   children    – the live demo
  */
 const ComponentShowcase = ({ title, description, code, canvas = "light", children }) => {
-  const { t } = useTranslation();
+  const t = useGuideT();
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
 
