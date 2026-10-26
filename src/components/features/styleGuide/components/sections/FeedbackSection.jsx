@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGuideT } from "../../hooks/useUiTemplate";
-import { MdDelete, MdEvent, MdInbox } from "react-icons/md";
+import { MdInbox } from "react-icons/md";
 import AlertBanner from "components/ui/AlertBanner";
-import Modal from "components/ui/modals/Modal";
-import ConfirmModal from "components/ui/modals/ConfirmModal";
 import Button from "components/ui/buttons/Button";
 import EmptyState from "components/empty/empty";
 import Loading from "components/loading/Loading";
@@ -16,8 +14,6 @@ const FeedbackSection = () => {
   const t = useGuideT();
   const s = (k) => t(`styleGuide.feedback.${k}`);
   const toast = useToast();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [confirmOpen, setConfirmOpen] = useState(false);
 
   return (
     <GuideSection id="feedback" title={s("title")} intro={s("intro")}>
@@ -33,7 +29,7 @@ const FeedbackSection = () => {
         </div>
       </ComponentShowcase>
 
-      <div className="grid gap-8 lg:grid-cols-2">
+      <div>
         <ComponentShowcase
           title="Toast"
           description={s("toast_desc")}
@@ -45,24 +41,6 @@ toast.success("Saved", "Your changes have been saved.");`}
             <Button text={s("toast_success")} onClick={() => toast.success(s("toast_success"), s("toast_success_msg"))} />
             <Button text={s("toast_error")} variant="danger" onClick={() => toast.error(s("toast_error"), s("toast_error_msg"))} />
             <Button text={s("toast_info")} variant="ghost" onClick={() => toast.info(s("toast_info"), s("toast_info_msg"))} />
-          </div>
-        </ComponentShowcase>
-
-        <ComponentShowcase
-          title="Modal · ConfirmModal"
-          description={s("modal_desc")}
-          code={`
-<ConfirmModal
-  open={open}
-  onClose={() => setOpen(false)}
-  onConfirm={remove}
-  title="Delete event?"
-  message="This action cannot be undone."
-/>`}
-        >
-          <div className="flex flex-wrap gap-3">
-            <Button text={s("open_modal")} variant="secondary" onClick={() => setModalOpen(true)} />
-            <Button text={s("open_confirm")} variant="danger" onClick={() => setConfirmOpen(true)} />
           </div>
         </ComponentShowcase>
       </div>
@@ -119,30 +97,6 @@ toast.success("Saved", "Your changes have been saved.");`}
         </ComponentShowcase>
       </div>
 
-      <Modal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        title={s("modal_title")}
-        subtitle={s("modal_subtitle")}
-        icon={<MdEvent className="h-5 w-5" />}
-        footer={
-          <div className="flex justify-end gap-2">
-            <Button text={t("common.cancel")} variant="ghost" onClick={() => setModalOpen(false)} />
-            <Button text={s("modal_cta")} onClick={() => setModalOpen(false)} />
-          </div>
-        }
-      >
-        <p className="text-sm leading-relaxed text-slate-500">{s("modal_body")}</p>
-      </Modal>
-
-      <ConfirmModal
-        open={confirmOpen}
-        onClose={() => setConfirmOpen(false)}
-        onConfirm={() => setConfirmOpen(false)}
-        icon={<MdDelete className="h-5 w-5" />}
-        title={s("confirm_title")}
-        message={s("confirm_body")}
-      />
     </GuideSection>
   );
 };

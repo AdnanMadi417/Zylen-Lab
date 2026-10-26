@@ -7,6 +7,7 @@ export const SECTION_IDS = [
   "buttons",
   "forms",
   "feedback",
+  "popups",
   "data",
   "dashboard",
 ];
