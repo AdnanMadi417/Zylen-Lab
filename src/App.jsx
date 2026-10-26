@@ -9,6 +9,7 @@ import BeneficiaryLayout   from "layouts/beneficiary";
 import AuthLayout          from "layouts/auth";
 import PublicLayout        from "layouts/public";
 import StyleGuidePage      from "views/public/styleGuide";
+import ZylenLabPage       from "views/public/zylenLab";
 import { CLIENTS }         from "components/features/styleGuide/constants/clients";
 
 // While true, client UI templates are the only reachable pages (zylen-lab
@@ -31,9 +32,10 @@ const RedirectToAuth = ({ to }) => {
 
 const StyleGuideOnlyRoutes = () => (
   <Routes>
+    <Route index element={<ZylenLabPage />} />
     {uiTemplateRoutes()}
-    {/* No index of templates on purpose — clients shouldn't discover each other. */}
-    <Route path="*" element={null} />
+    {/* The landing page lists no templates on purpose — clients shouldn't discover each other. */}
+    <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );
 

@@ -2776,5 +2776,46 @@
         "role_black": "The logo's black. Use it for the footer, dark heroes, gold-on-black brand moments and strong text on gold."
       }
     }
+  },
+  "zylenLab": {
+    "meta_title": "Zylen-Lab",
+    "hero": {
+      "badge": "Zylen-Lab",
+      "title": "Brand & UI templates, built for every client.",
+      "subtitle": "Each client gets a dedicated, living style guide: their colours, typography and the real interface components their product will use — in English and Arabic.",
+      "cta": "How it works"
+    },
+    "how": {
+      "eyebrow": "Process",
+      "title": "How it works",
+      "steps": {
+        "brand": {
+          "title": "Share your brand",
+          "desc": "We start from your logo, colours and fonts and turn them into a complete palette and set of design tokens."
+        },
+        "template": {
+          "title": "We build your template",
+          "desc": "Your brand is applied to our component library: buttons, forms, feedback, data tables and dashboards."
+        },
+        "handoff": {
+          "title": "Review & hand off",
+          "desc": "You get a private link to your template to review, print as PDF and use as the reference for your product."
+        }
+      }
+    },
+    "includes": {
+      "eyebrow": "Inside every template",
+      "title": "What your template includes",
+      "subtitle": "Every example is a live component, so what you approve is exactly what gets built.",
+      "items": {
+        "colors": "Brand colours & palette",
+        "typography": "Typography scale",
+        "components": "Buttons & UI components",
+        "forms": "Form inputs & validation",
+        "dashboards": "Dashboard patterns",
+        "bilingual": "English & Arabic (RTL)"
+      }
+    },
+    "footer": "© {{year}} Zylen-Lab"
   }
 }
