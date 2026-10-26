@@ -3,5 +3,6 @@
 // list it here, and add any copy overrides under uiTemplates.<id> in the locales.
 import haluan from "./haluan";
 import unidexs from "./unidexs";
+import kindergarten from "./kindergarten";
 
-export const CLIENTS = [haluan, unidexs];
+export const CLIENTS = [haluan, unidexs, kindergarten];

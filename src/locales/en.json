@@ -2785,6 +2785,13 @@
         "faq_q2": "How can I volunteer?",
         "faq_a2": "Browse open opportunities on the Opportunities page and submit an application."
       }
+    },
+    "kindergarten": {
+      "brand": {
+        "names": {
+          "brand_gold": "Ocean Teal"
+        }
+      }
     }
   },
   "zylenLab": {
