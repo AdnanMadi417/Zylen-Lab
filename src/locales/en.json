@@ -2495,7 +2495,8 @@
       "hide_code": "Hide code",
       "copy": "Copy",
       "print": "Print / PDF",
-      "contents": "Contents"
+      "contents": "Contents",
+      "hide_contents": "Hide contents"
     },
     "hero": {
       "badge": "Version 1.0",

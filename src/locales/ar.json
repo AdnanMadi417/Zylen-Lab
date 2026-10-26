@@ -2495,7 +2495,8 @@
       "hide_code": "إخفاء الكود",
       "copy": "نسخ",
       "print": "طباعة / PDF",
-      "contents": "المحتويات"
+      "contents": "المحتويات",
+      "hide_contents": "إخفاء المحتويات"
     },
     "hero": {
       "badge": "الإصدار 1.0",
