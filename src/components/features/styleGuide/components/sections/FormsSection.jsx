@@ -15,11 +15,66 @@ import {
 import GuideSection from "../GuideSection";
 import ComponentShowcase from "../ComponentShowcase";
 import useDemoForm from "../../hooks/useDemoForm";
+import ImageUploadField from "components/form/upload/ImageUploadField";
+import { MdCloudUpload, MdDeleteOutline, MdInsertDriveFile, MdOpenInNew, MdErrorOutline } from "react-icons/md";
+
+/**
+ * Document upload states, matching StorageDocumentField's markup. The real
+ * field uploads to storage on selection, so its states are drawn statically.
+ */
+const DocumentStates = () => {
+  const t = useGuideT();
+  const s = (k) => t(`styleGuide.forms.${k}`);
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-6 py-8 text-center transition-all hover:border-brand-500/75 hover:bg-brand-500/10">
+        <MdCloudUpload className="mb-2 h-8 w-8 text-slate-400" />
+        <p className="text-sm text-slate-500">
+          {t("common.drag_drop_prefix")} <span className="font-semibold text-brand-800">{t("common.browse")}</span>
+        </p>
+        <p className="mt-1 text-xs text-slate-400" dir="ltr">PDF, DOCX · 10 MB</p>
+      </div>
+      <div className="rounded-xl border border-slate-200 bg-white p-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-500/15 text-brand-800">
+              <MdInsertDriveFile className="h-5 w-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-medium text-slate-900" dir="ltr">{s("doc_name")}</p>
+              <span className="inline-flex items-center gap-1 text-xs text-brand-800">
+                {t("common.open")} <MdOpenInNew className="h-3 w-3" />
+              </span>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-600">{t("common.replace")}</span>
+            <span className="flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-500">
+              <MdDeleteOutline className="h-3.5 w-3.5" /> {t("common.remove")}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="rounded-xl border border-red-200 bg-red-50 p-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-red-100 text-red-500">
+            <MdErrorOutline className="h-5 w-5" />
+          </div>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-medium text-red-600" dir="ltr">{s("doc_error_name")}</p>
+            <p className="text-xs text-red-500">{s("doc_error")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const FormsSection = () => {
   const t = useGuideT();
   const s = (k) => t(`styleGuide.forms.${k}`);
   const [search, setSearch] = useState("");
+  const [photo, setPhoto] = useState(null);
 
   const text = useDemoForm({ name: "", email: "" }, {});
   const errorForm = useDemoForm({ email: "not-an-email" }, { email: s("error_email") });
@@ -147,6 +202,30 @@ const updateFormData = (field, v) => setFormData((p) => ({ ...p, [field]: v }));
           <SearchInput value={search} onChange={setSearch} placeholder={s("ph_search")} />
         </div>
       </ComponentShowcase>
+
+      <div className="grid gap-8 lg:grid-cols-2">
+        <ComponentShowcase
+          title="ImageUploadField"
+          description={s("image_upload_desc")}
+          code={`<StorageImageField label="Profile photo" field="photo" folder="avatars" {...form} />`}
+        >
+          <ImageUploadField
+            label={s("label_photo")}
+            field="photo"
+            simpleFile={photo}
+            onSimpleFileChange={setPhoto}
+            onSimpleRemove={() => setPhoto(null)}
+            errors={{}}
+          />
+        </ComponentShowcase>
+        <ComponentShowcase
+          title="StorageDocumentField"
+          description={s("doc_upload_desc")}
+          code={`<StorageDocumentField label="Contract" field="contract" folder="documents" {...form} />`}
+        >
+          <DocumentStates />
+        </ComponentShowcase>
+      </div>
     </GuideSection>
   );
 };

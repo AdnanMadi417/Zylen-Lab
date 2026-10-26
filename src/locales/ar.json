@@ -2666,7 +2666,13 @@
       "interest_health": "الفعاليات",
       "interest_relief": "العروض",
       "search_desc": "حقل بحث لتصفية القوائم والجداول.",
-      "ph_search": "بحث…"
+      "ph_search": "بحث…",
+      "image_upload_desc": "اختر صورة PNG أو JPG لرؤية المعاينة. في المنتج يرفعها StorageImageField مباشرة إلى التخزين.",
+      "label_photo": "الصورة الشخصية",
+      "doc_upload_desc": "حالات الفراغ والرفع والخطأ للمستندات وملفات PDF.",
+      "doc_name": "enrolment-form.pdf",
+      "doc_error_name": "passport-scan.heic",
+      "doc_error": "نوع الملف غير مدعوم. استخدم PDF أو DOCX."
     },
     "navigation": {
       "title": "التنقّل",

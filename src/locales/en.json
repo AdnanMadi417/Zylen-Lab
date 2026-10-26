@@ -2666,7 +2666,13 @@
       "interest_health": "Events",
       "interest_relief": "Offers",
       "search_desc": "A search field for filtering lists and tables.",
-      "ph_search": "Search…"
+      "ph_search": "Search…",
+      "image_upload_desc": "Pick a PNG or JPG to see the preview. In the product, StorageImageField uploads it straight to storage.",
+      "label_photo": "Profile photo",
+      "doc_upload_desc": "Empty, uploaded and error states for documents and PDFs.",
+      "doc_name": "enrolment-form.pdf",
+      "doc_error_name": "passport-scan.heic",
+      "doc_error": "This file type isn't supported. Use PDF or DOCX."
     },
     "navigation": {
       "title": "Navigation",
