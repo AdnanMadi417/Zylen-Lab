@@ -1,8 +1,26 @@
-# pfm-frontend — folder structure
+# Zylen-Lab — folder structure
 
-React (CRA) + Tailwind CSS frontend for Palestinian Forum Malaysia. Feature-module
-architecture — most business logic lives under `src/components/features/`, not
-under `src/views/`. See `README.md` for tech stack, scripts, and env setup.
+React (CRA) + Tailwind CSS. Zylen-Lab builds a brand & UI template page for each
+client, on top of the component library inherited from the Haluan (Palestinian
+Forum Malaysia) portal. Feature-module architecture — most business logic lives
+under `src/components/features/`, not under `src/views/`. See `README.md` for tech
+stack, scripts, and env setup.
+
+## Zylen-Lab app mode
+
+`STYLE_GUIDE_ONLY` in `src/App.jsx` (currently `true`) limits the app to:
+
+- `/` — the Zylen-Lab landing page (`features/zylenLab/`). It must never list or link
+  to client templates: clients shouldn't discover each other.
+- `/ui-template-<client>-<year>` — one unlisted page per client, rendered by
+  `features/styleGuide/` from a config in `styleGuide/constants/clients/`
+  (registered in `clients/index.js`). Each config sets name, logo, brand scale
+  (50–900) and ink colour; `useApplyClientColors` writes them to the `--brand-*` /
+  `--brand-ink` CSS variables behind Tailwind's `brand-*` and `ink` colours.
+- Copy for templates lives under `styleGuide` in the locales, with `{{client}}`
+  interpolated; a client overrides any key at `uiTemplates.<id>.*` (via `useGuideT`).
+
+Setting the flag to `false` restores the full Haluan portal described below.
 
 ## `src/components/features/<feature>/`
 

@@ -1,8 +1,18 @@
-# PFM Frontend Portal
+# Zylen-Lab
 
-**Palestinian Forum Malaysia (PFM)** — official member & operations portal frontend.
-A public marketing site plus role-scoped dashboards (Admin, Staff, Beneficiary) for managing
-projects, applications, beneficiaries, staff, content, and donations.
+Zylen-Lab builds a dedicated brand & UI template for each client: their colours,
+typography and the live interface components their product will use, in English and
+Arabic (RTL).
+
+- `/` — Zylen-Lab landing page
+- `/ui-template-<client>-<year>` — a client's template (unlisted; shared directly),
+  e.g. `/ui-template-unidexs-2026`
+
+To add a client, copy `src/components/features/styleGuide/constants/clients/unidexs.js`,
+fill in the name, logo and colours, and register it in `clients/index.js`.
+
+The codebase started as the Haluan (Palestinian Forum Malaysia) portal; that app is
+still here behind the `STYLE_GUIDE_ONLY` flag in `src/App.jsx`.
 
 Built with React, Tailwind CSS, and React Router v6.
 
@@ -31,8 +41,8 @@ Built with React, Tailwind CSS, and React Router v6.
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/adnanmadi241/pfm-frontend.git
-cd pfm-frontend
+git clone <zylen-lab-repo-url> zylen-lab
+cd zylen-lab
 
 # 2. Install dependencies
 npm install
@@ -205,15 +215,16 @@ them in Vercel instead. Use `.env.example` as the reference for what's required.
 
 ## Brand
 
-| Asset              | Path                                |
-|---------------------|--------------------------------------|
-| Logo (white bg)     | `src/assets/branding/LOGO-wbg.png`  |
-| Logo (solid)        | `src/assets/branding/LOGO.jpg`      |
-| Brand green         | `#007A3D`                            |
+| Asset               | Path / value                              |
+|---------------------|--------------------------------------------|
+| Logo (white)        | `public/assets/brand/white-logo.png`       |
+| Wordmark (white)    | `public/assets/brand/white-logo-bg.png`    |
+| Icon (white)        | `public/assets/brand/white-icon-bg.png`    |
+| Background          | `public/assets/background/blur-img-bg-1.png` |
+| Navy / blue / sky   | `#042538` / `#183791` / `#3CADD9`          |
 
 ---
 
 ## License
 
-© 2026 Palestinian Forum Malaysia (PFM). All rights reserved.
-# Zylen-Lab
+© 2026 Zylen-Lab. All rights reserved.
