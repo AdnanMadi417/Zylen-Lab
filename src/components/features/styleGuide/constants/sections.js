@@ -11,6 +11,7 @@ export const SECTION_IDS = [
   "data",
   "tables",
   "website",
+  "auth",
   "dashboard",
   "handoff",
 ];

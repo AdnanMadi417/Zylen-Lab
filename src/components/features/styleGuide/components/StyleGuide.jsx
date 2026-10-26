@@ -12,6 +12,7 @@ import PopupsSection from "./sections/PopupsSection";
 import DataDisplaySection from "./sections/DataDisplaySection";
 import TablesSection from "./sections/TablesSection";
 import WebsiteSection from "./sections/WebsiteSection";
+import AuthSection from "./sections/AuthSection";
 import DashboardSection from "./sections/DashboardSection";
 import HandoffSection from "./sections/HandoffSection";
 import { SECTION_IDS, sectionNumber } from "../constants/sections";
@@ -37,6 +38,7 @@ const COMPONENTS = {
   data:        DataDisplaySection,
   tables:      TablesSection,
   website:     WebsiteSection,
+  auth:        AuthSection,
   dashboard:   DashboardSection,
   handoff:     HandoffSection,
 };

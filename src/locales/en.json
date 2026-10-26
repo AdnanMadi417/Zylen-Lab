@@ -2875,6 +2875,21 @@
       "newsletter_btn": "Subscribe",
       "footer_copy": "© {{year}} {{client}}. All rights reserved."
     },
+    "auth": {
+      "title": "Sign-in screens",
+      "intro": "The screens people see before they reach the product: signing in, verifying with a code and resetting a password.",
+      "sign_in_subtitle": "Sign in to your {{client}} account to continue.",
+      "panel_badge": "Member portal",
+      "panel_tagline": "Everything you need, one secure sign-in away.",
+      "panel_version": "{{client}} Portal v1.0",
+      "signin_name": "Sign in",
+      "signin_desc": "Brand panel on large screens; on phones the logo sits above the form.",
+      "otp_name": "Verification code",
+      "forgot_name": "Forgot password",
+      "sent_name": "Reset link sent",
+      "steps_name": "Verification & recovery",
+      "steps_desc": "A one-time code step, the forgot-password form and the confirmation once the reset link is sent."
+    },
     "dashboard": {
       "title": "Dashboard patterns",
       "intro": "Building blocks used on the admin and user dashboards.",
@@ -3044,6 +3059,11 @@
         "nav_cta": "Register as Beneficiary",
         "hero_cta": "Join Us",
         "footer_desc": "Uniting Palestinians and supporters across Malaysia through community, advocacy, and humanitarian action."
+      },
+      "auth": {
+        "panel_badge": "🇲🇾 Malaysia · Palestine 🇵🇸",
+        "panel_tagline": "Standing in solidarity with Palestine — for justice, dignity, and freedom.",
+        "panel_version": "Haluan Portal v1.0"
       }
     },
     "kindergarten": {
@@ -3176,6 +3196,10 @@
         "footer_desc": "A caring kindergarten where children learn through play.",
         "footer_email": "hello@kindergarten.com",
         "newsletter_desc": "News from the kindergarten, once a month."
+      },
+      "auth": {
+        "panel_badge": "Parent portal",
+        "panel_tagline": "Stay close to your child's day — activities, messages and updates in one place."
       },
       "tables": {
         "search": "Search children…",
