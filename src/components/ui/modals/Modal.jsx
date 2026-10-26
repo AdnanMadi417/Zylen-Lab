@@ -19,11 +19,13 @@ const Modal = ({
   footer,
   size = "md",
   closeOnBackdrop = true,
+  inline = false, // render in place, always open (style-guide previews)
 }) => {
   const [visible, setVisible] = useState(false);
   const [shown,   setShown]   = useState(false);
 
   useEffect(() => {
+    if (inline) return;
     if (open) {
       setVisible(true);
       // Double rAF: wait for the element to be painted before adding transition classes
@@ -36,20 +38,68 @@ const Modal = ({
       const t = setTimeout(() => setVisible(false), 200);
       return () => clearTimeout(t);
     }
-  }, [open]);
+  }, [open, inline]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open || inline) return;
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+  }, [open, inline, onClose]);
 
   useEffect(() => {
+    if (inline) return;
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [open]);
+  }, [open, inline]);
 
+  const isShown = inline || shown;
+  const card = (
+    <div
+      className={`relative w-full ${SIZES[size]} rounded-2xl bg-white shadow-2xl transition-all duration-300 ${
+        isShown
+          ? "translate-y-0 scale-100 opacity-100"
+          : "translate-y-4 scale-95 opacity-0"
+      }`}
+      onClick={(e) => e.stopPropagation()}
+    >
+
+      {/* ── Header ── */}
+      {(title || icon) && (
+        <div className="flex items-start justify-between border-b border-slate-100 px-5 py-4">
+          <div className="flex min-w-0 items-center gap-2.5">
+            {icon}
+            <div className="min-w-0">
+              <h2 className="truncate text-sm font-bold text-slate-900">{title}</h2>
+              {subtitle && (
+                <p className="mt-0.5 truncate text-xs text-slate-400">{subtitle}</p>
+              )}
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="ml-3 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-all duration-300 ease-in-out hover:bg-slate-100 hover:text-slate-600"
+          >
+            <MdClose className="h-4 w-4" />
+          </button>
+        </div>
+      )}
+
+      {/* ── Body ── */}
+      <div className="px-5 py-4">{children}</div>
+
+      {/* ── Footer ── */}
+      {footer && (
+        <div className="border-t border-slate-100 px-5 pb-5 pt-4">
+          {footer}
+        </div>
+      )}
+
+    </div>
+  );
+
+  if (inline) return card;
   if (!visible) return null;
 
   return ReactDOM.createPortal(
@@ -59,48 +109,7 @@ const Modal = ({
       }`}
       onClick={closeOnBackdrop ? onClose : undefined}
     >
-      <div
-        className={`relative w-full ${SIZES[size]} rounded-2xl bg-white shadow-2xl transition-all duration-300 ${
-          shown
-            ? "translate-y-0 scale-100 opacity-100"
-            : "translate-y-4 scale-95 opacity-0"
-        }`}
-        onClick={(e) => e.stopPropagation()}
-      >
-
-        {/* ── Header ── */}
-        {(title || icon) && (
-          <div className="flex items-start justify-between border-b border-slate-100 px-5 py-4">
-            <div className="flex min-w-0 items-center gap-2.5">
-              {icon}
-              <div className="min-w-0">
-                <h2 className="truncate text-sm font-bold text-slate-900">{title}</h2>
-                {subtitle && (
-                  <p className="mt-0.5 truncate text-xs text-slate-400">{subtitle}</p>
-                )}
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={onClose}
-              className="ml-3 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-all duration-300 ease-in-out hover:bg-slate-100 hover:text-slate-600"
-            >
-              <MdClose className="h-4 w-4" />
-            </button>
-          </div>
-        )}
-
-        {/* ── Body ── */}
-        <div className="px-5 py-4">{children}</div>
-
-        {/* ── Footer ── */}
-        {footer && (
-          <div className="border-t border-slate-100 px-5 pb-5 pt-4">
-            {footer}
-          </div>
-        )}
-
-      </div>
+      {card}
     </div>,
     document.body
   );

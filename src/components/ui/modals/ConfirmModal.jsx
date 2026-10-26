@@ -18,6 +18,7 @@ import Button from "components/ui/buttons/Button";
  *   cancelText    – string  (default "Cancel")
  *   confirmVariant – Button variant (default "danger")
  *   loading       – boolean
+ *   inline        – render in place, always open (style-guide previews)
  */
 const ConfirmModal = ({
   open,
@@ -31,6 +32,7 @@ const ConfirmModal = ({
   cancelText,
   confirmVariant = "danger",
   loading        = false,
+  inline         = false,
 }) => {
   const { t } = useTranslation();
   return (
@@ -41,6 +43,7 @@ const ConfirmModal = ({
       subtitle={subtitle}
       icon={icon}
       size="sm"
+      inline={inline}
       footer={
         <div className="flex gap-2">
           <Button
