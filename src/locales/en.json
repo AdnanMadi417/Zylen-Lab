@@ -2539,7 +2539,7 @@
       "text_disabled_note": "No dedicated colour. Disabled elements are shown at 50% opacity.",
       "text_link": "Link / action",
       "text_inverse": "Inverse",
-      "text_sample": "Together for Palestine",
+      "text_sample": "The quick brown fox",
       "semantic_title": "Semantic colours",
       "semantic_intro": "Functional status colours, used only to show the outcome of an action and never as brand colours. These are the exact tokens used by alerts and notifications.",
       "semantic": {
@@ -2592,7 +2592,7 @@
         "caption": "Caption",
         "overline": "Overline"
       },
-      "sample": "Together for Palestine"
+      "sample": "Designed for every client"
     },
     "foundations": {
       "title": "Foundations",
@@ -2730,10 +2730,10 @@
       "interactive": "Interactive",
       "read_only": "Read-only",
       "faq_desc": "Expandable questions and answers.",
-      "faq_q1": "Who can apply for support?",
-      "faq_a1": "Palestinian individuals and families residing in Malaysia can apply through the online application form.",
-      "faq_q2": "How can I volunteer?",
-      "faq_a2": "Browse open opportunities on the Opportunities page and submit an application."
+      "faq_q1": "How do I get started?",
+      "faq_a1": "Create an account and complete your profile to access all features.",
+      "faq_q2": "How can I get help?",
+      "faq_a2": "Visit the Help page or contact our support team."
     },
     "dashboard": {
       "title": "Dashboard patterns",
@@ -2773,7 +2773,17 @@
         "palette_intro": "Tints and shades of the brand gold from 50 to 900. All ten shades are already defined, so no new shades are needed.",
         "secondary_intro": "Supporting colours that work with the gold. Green is used only for success states and is not part of the Haluan brand.",
         "surface_intro": "The layers that pages and components sit on, from the page canvas to gold-tinted and dark surfaces.",
-        "role_black": "The logo's black. Use it for the footer, dark heroes, gold-on-black brand moments and strong text on gold."
+        "role_black": "The logo's black. Use it for the footer, dark heroes, gold-on-black brand moments and strong text on gold.",
+        "text_sample": "Together for Palestine"
+      },
+      "typography": {
+        "sample": "Together for Palestine"
+      },
+      "data": {
+        "faq_q1": "Who can apply for support?",
+        "faq_a1": "Palestinian individuals and families residing in Malaysia can apply through the online application form.",
+        "faq_q2": "How can I volunteer?",
+        "faq_a2": "Browse open opportunities on the Opportunities page and submit an application."
       }
     }
   },
