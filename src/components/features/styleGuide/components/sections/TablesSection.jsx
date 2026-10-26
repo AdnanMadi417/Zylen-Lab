@@ -19,15 +19,13 @@ import { SearchInput } from "components/form";
 import Button from "components/ui/buttons/Button";
 import RowIconButton from "components/ui/buttons/RowIconButton";
 import Progress from "components/progress";
+import Tabs from "components/ui/Tabs";
+import Badge from "components/ui/Badge";
 import { useGuideT } from "../../hooks/useUiTemplate";
 import GuideSection from "../GuideSection";
 import ComponentShowcase from "../ComponentShowcase";
 
-const STATUS_BADGE = {
-  active:   "bg-green/10 text-green",
-  pending:  "bg-amber-50 text-amber-600",
-  inactive: "bg-slate-100 text-slate-500",
-};
+const STATUS_VARIANT = { active: "success", pending: "warning", inactive: "neutral" };
 
 // [name key, group, location, joined (sortable ISO), status]
 const ROWS = [
@@ -43,12 +41,7 @@ const ROWS = [
 const initials = (name) => name.split(" ").map((p) => p[0]).slice(0, 2).join("");
 const fmtDate = (iso) => iso.split("-").reverse().join("/");
 
-const StatusBadge = ({ status, label }) => (
-  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ${STATUS_BADGE[status]}`}>
-    <span className="h-1.5 w-1.5 rounded-full bg-current" />
-    {label}
-  </span>
-);
+const StatusBadge = ({ status, label }) => <Badge variant={STATUS_VARIANT[status]} dot>{label}</Badge>;
 
 const Person = ({ name, sub }) => (
   <span className="flex items-center gap-2.5">
@@ -160,23 +153,11 @@ const ManagedTable = () => {
   return (
     <div className="flex flex-col gap-4">
       {/* Status tabs */}
-      <div className="flex gap-1 overflow-x-auto border-b border-slate-200">
-        {["all", "active", "pending", "inactive"].map((key) => (
-          <button
-            key={key}
-            type="button"
-            onClick={() => { setTab(key); setSelected([]); }}
-            className={`-mb-px inline-flex shrink-0 items-center gap-2 border-b-2 px-3 py-2.5 text-sm font-semibold transition-colors ${
-              tab === key ? "border-brand-500 text-slate-900" : "border-transparent text-slate-400 hover:text-slate-600"
-            }`}
-          >
-            {s(`tab_${key}`)}
-            <span className={`rounded-full px-2 py-0.5 text-[11px] ${tab === key ? "bg-brand-500 text-on-brand" : "bg-slate-100 text-slate-500"}`}>
-              {count(key)}
-            </span>
-          </button>
-        ))}
-      </div>
+      <Tabs
+        value={tab}
+        onChange={(key) => { setTab(key); setSelected([]); }}
+        tabs={["all", "active", "pending", "inactive"].map((key) => ({ key, label: s(`tab_${key}`), count: count(key) }))}
+      />
 
       {/* Toolbar — or bulk actions while rows are selected */}
       {selected.length > 0 ? (
