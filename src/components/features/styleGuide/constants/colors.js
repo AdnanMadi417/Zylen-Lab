@@ -28,8 +28,12 @@ const SLATE = {
   },
 };
 
-/** Brand-dependent swatches for a client's `colors` ({ brand, ink }). */
-export const getBrandColors = ({ brand, ink }) => {
+/**
+ * Brand-dependent swatches for a client's `colors` ({ brand, ink, accents }).
+ * `accents` (optional) replace the default navy/slate supporting cards; each is
+ * { label: { en, ar }, role: { en, ar }, hex }.
+ */
+export const getBrandColors = ({ brand, ink, accents }) => {
   const INK = { nameKey: "logo_black", token: "ink", hex: ink };
 
   return {
@@ -40,12 +44,14 @@ export const getBrandColors = ({ brand, ink }) => {
       navy: NAVY,
       slate: SLATE,
     },
-    SECONDARY_ACCENT: [
-      { ...INK, roleKey: "role_black" },
-      { nameKey: "navy",      token: "navy-700",  hex: "#1B254B", roleKey: "role_navy" },
-      { nameKey: "navy_deep", token: "navy-900",  hex: "#0B1437", roleKey: "role_navy_deep" },
-      { nameKey: "slate",     token: "slate-900", hex: "#0F172A", roleKey: "role_slate" },
-    ],
+    SECONDARY_ACCENT: accents
+      ? [...accents.map((a) => ({ ...a, nameKey: a.label.en })), { ...INK, roleKey: "role_black" }]
+      : [
+          { ...INK, roleKey: "role_black" },
+          { nameKey: "navy",      token: "navy-700",  hex: "#1B254B", roleKey: "role_navy" },
+          { nameKey: "navy_deep", token: "navy-900",  hex: "#0B1437", roleKey: "role_navy_deep" },
+          { nameKey: "slate",     token: "slate-900", hex: "#0F172A", roleKey: "role_slate" },
+        ],
     SURFACES: [
       { nameKey: "surface_page",     token: "white",        hex: "#FFFFFF" },
       { nameKey: "surface_subtle",   token: "slate-50",     hex: "#F8FAFC" },

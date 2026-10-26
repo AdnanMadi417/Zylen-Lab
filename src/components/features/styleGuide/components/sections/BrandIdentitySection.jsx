@@ -4,6 +4,7 @@ import GuideSection from "../GuideSection";
 import ClientLogo from "../ClientLogo";
 import { ColorCard, ScaleStrip, ContrastBadge, ProposedTag, toCss, contrastRatio } from "../ColorSwatch";
 import { getBrandColors, SEMANTIC } from "../../constants/colors";
+import { useTranslation } from "react-i18next";
 import { useGuideT, useUiTemplate } from "../../hooks/useUiTemplate";
 
 const Group = ({ title, intro, children }) => (
@@ -16,7 +17,9 @@ const Group = ({ title, intro, children }) => (
 
 const BrandIdentitySection = () => {
   const t = useGuideT();
+  const { i18n } = useTranslation();
   const client = useUiTemplate();
+  const local = (o) => o[i18n.language] ?? o.en;
   const { PRIMARY, INK, SCALES, SECONDARY_ACCENT, SURFACES, TEXT, BORDERS } = getBrandColors(client.colors);
   const PROPOSALS = client.proposals;
   const s = (k, o) => t(`styleGuide.brand.${k}`, o);
@@ -70,14 +73,14 @@ const BrandIdentitySection = () => {
 
       {/* ── Secondary & accent ── */}
       <Group title={s("secondary_title")} intro={s("secondary_intro")}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className={`grid gap-4 sm:grid-cols-2 ${SECONDARY_ACCENT.length > 4 ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}>
           {SECONDARY_ACCENT.map((c) => (
             <ColorCard
               key={c.nameKey}
-              name={s(`names.${c.nameKey}`)}
+              name={c.label ? local(c.label) : s(`names.${c.nameKey}`)}
               hex={c.hex}
               token={c.token}
-              note={s(c.roleKey)}
+              note={c.role ? local(c.role) : s(c.roleKey)}
               proposed={c.proposed}
             />
           ))}
