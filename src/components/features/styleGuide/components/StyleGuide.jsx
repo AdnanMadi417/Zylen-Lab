@@ -12,6 +12,7 @@ import PopupsSection from "./sections/PopupsSection";
 import DataDisplaySection from "./sections/DataDisplaySection";
 import WebsiteSection from "./sections/WebsiteSection";
 import DashboardSection from "./sections/DashboardSection";
+import HandoffSection from "./sections/HandoffSection";
 import { SECTION_IDS, sectionNumber } from "../constants/sections";
 import {
   UiTemplateProvider,
@@ -35,6 +36,7 @@ const COMPONENTS = {
   data:        DataDisplaySection,
   website:     WebsiteSection,
   dashboard:   DashboardSection,
+  handoff:     HandoffSection,
 };
 
 const SECTIONS = SECTION_IDS.map((id) => ({ id, Component: COMPONENTS[id] }));

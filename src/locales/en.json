@@ -2884,6 +2884,13 @@
         "status_pending": "Pending",
         "status_inactive": "Inactive"
       }
+    },
+    "handoff": {
+      "title": "Developer handoff",
+      "intro": "Everything a developer needs to build {{client}}'s product with these components: a Tailwind config and base CSS generated from this guide. Drop both into the project and every class on this page works as shown.",
+      "tokens_title": "Brand tokens",
+      "tokens_intro": "Use these class names for brand colours and type; the rest of the palette (slate, navy, green, red…) is included too.",
+      "download": "Download"
     }
   },
   "uiTemplates": {

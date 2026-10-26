@@ -23,6 +23,14 @@ stack, scripts, and env setup.
 - Copy for templates lives under `styleGuide` in the locales, with `{{client}}`
   interpolated; a client overrides any key at `uiTemplates.<id>.*` (via `useGuideT`).
 
+- Each template ends with a "Developer handoff" section that generates the client's
+  own `tailwind.config.js` and `index.css` (`styleGuide/utils/tailwindExport.js`) —
+  every client project gets its own Tailwind with literal brand colours.
+- `src/theme/tailwindTheme.js` is the single source for the shared Tailwind theme
+  (palette, screens, shadows…). `tailwind.config.js` adds the brand tokens as CSS
+  variables; the export adds them as hex. Change shared tokens there, not in
+  `tailwind.config.js`.
+
 Setting the flag to `false` restores the full Haluan portal described below.
 
 ## `src/components/features/<feature>/`

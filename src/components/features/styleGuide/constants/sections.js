@@ -11,6 +11,7 @@ export const SECTION_IDS = [
   "data",
   "website",
   "dashboard",
+  "handoff",
 ];
 
 export const sectionNumber = (id) => String(SECTION_IDS.indexOf(id) + 1).padStart(2, "0");

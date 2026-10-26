@@ -1,3 +1,5 @@
+import { accentToken } from "../utils/tailwindExport";
+
 // Colour data for Section 1 — Brand Identity & Colors.
 //
 // Brand colours (primary scale + ink) come from the client config
@@ -45,7 +47,7 @@ export const getBrandColors = ({ brand, ink, accents }) => {
       slate: SLATE,
     },
     SECONDARY_ACCENT: accents
-      ? [...accents.map((a) => ({ ...a, nameKey: a.label.en })), { ...INK, roleKey: "role_black" }]
+      ? [...accents.map((a) => ({ ...a, nameKey: a.label.en, token: accentToken(a) })), { ...INK, roleKey: "role_black" }]
       : [
           { ...INK, roleKey: "role_black" },
           { nameKey: "navy",      token: "navy-700",  hex: "#1B254B", roleKey: "role_navy" },
