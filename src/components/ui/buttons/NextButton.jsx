@@ -26,7 +26,7 @@ const NextButton = ({ onClick, disabled, loading, text, icon, className = "" }) 
         <>
           {label && <span className="truncate">{label}</span>}
           <span className="shrink-0 flex items-center">
-            {icon ?? <MdArrowForward className="h-4 w-4" />}
+            {icon ?? <MdArrowForward className="h-4 w-4 rtl:rotate-180" />}
           </span>
         </>
       )}

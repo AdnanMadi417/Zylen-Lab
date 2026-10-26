@@ -21,7 +21,7 @@ const PrevButton = ({ onClick, disabled, text, icon, className = "" }) => {
       `}
     >
       <span className="shrink-0 flex items-center">
-        {icon ?? <MdArrowBack className="h-4 w-4" />}
+        {icon ?? <MdArrowBack className="h-4 w-4 rtl:rotate-180" />}
       </span>
       {label && <span className="truncate">{label}</span>}
     </button>
