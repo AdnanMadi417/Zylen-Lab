@@ -110,22 +110,22 @@ module.exports = {
         dm: ["DM Sans", "sans-serif"],
       },
       backgroundImage: {
-        // Brand (Haluan gold) — dots use brand-600 so they stay visible on white.
-        "dot-brand":        "radial-gradient(circle, rgb(217 157 0 / 18%) 1px, transparent 1px)",
-        "dot-brand-dark":   "radial-gradient(circle, rgb(217 157 0 / 100%) 1px, transparent 1px)",
+        // Brand — dots use brand-600 so they stay visible on white.
+        "dot-brand":        "radial-gradient(circle, rgb(var(--brand-600) / 18%) 1px, transparent 1px)",
+        "dot-brand-dark":   "radial-gradient(circle, rgb(var(--brand-600) / 100%) 1px, transparent 1px)",
         "dot-white":        "radial-gradient(circle, rgb(255 255 255 / 13%) 1px, transparent 1px)",
         "dot-slate":        "radial-gradient(circle, rgb(203 213 225) 1px, transparent 1px)",
         "auth-grid":        "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
-        "glow-top-brand":   "radial-gradient(ellipse at top, rgb(254 194 14 / 10%) 0%, transparent 70%)",
-        "glow-circle-brand":"radial-gradient(circle, rgb(254 194 14 / 6%) 0%, transparent 70%)",
+        "glow-top-brand":   "radial-gradient(ellipse at top, rgb(var(--brand-500) / 10%) 0%, transparent 70%)",
+        "glow-circle-brand":"radial-gradient(circle, rgb(var(--brand-500) / 6%) 0%, transparent 70%)",
       },
       boxShadow: {
         "3xl":         "14px 17px 40px 4px",
         inset:         "inset 0px 18px 22px",
         darkinset:     "0px 4px 4px inset",
-        "glow-brand":  "0 4px 20px rgb(254 194 14 / 35%)",
-        "glow-brand-sm":"0 4px 16px rgb(254 194 14 / 28%)",
-        "ring-brand":  "0 4px 40px rgb(254 194 14 / 8%)",
+        "glow-brand":  "0 4px 20px rgb(var(--brand-500) / 35%)",
+        "glow-brand-sm":"0 4px 16px rgb(var(--brand-500) / 28%)",
+        "ring-brand":  "0 4px 40px rgb(var(--brand-500) / 8%)",
       },
       borderRadius: {
         primary: "20px",
@@ -169,20 +169,18 @@ module.exports = {
     colors: () => ({
       white: "#ffffff",
       black: "#000000", // Haluan logo black (gold on black)
-      lightPrimary: "#FFFBEA", // = brand-50 (soft gold tint)
-      brandLinear: "#fec20e",
-      brand: {
-        50:  "#fffbea",
-        100: "#fff3c4",
-        200: "#ffe78a",
-        300: "#ffda52",
-        400: "#ffcf2e",
-        500: "#fec20e", // Primary brand color
-        600: "#d99d00",
-        700: "#b47700",
-        800: "#925b0e",
-        900: "#784a0f",
-      },
+      lightPrimary: "rgb(var(--brand-50) / <alpha-value>)", // = brand-50
+      brandLinear: "rgb(var(--brand-500) / <alpha-value>)",
+      // Brand scale + ink are CSS variables (RGB channels) so each UI template
+      // can apply its client's palette at runtime. Defaults (Haluan gold) live
+      // in src/index.css :root.
+      brand: Object.fromEntries(
+        [50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((n) => [
+          n,
+          `rgb(var(--brand-${n}) / <alpha-value>)`,
+        ])
+      ),
+      ink: "rgb(var(--brand-ink) / <alpha-value>)",
       gray: {
         50: "#f8f9fa",
         100: "#edf2f7",

@@ -6,6 +6,22 @@
 @tailwind utilities;
 
 @layer base {
+	/* Brand palette as RGB channels — read by tailwind.config.js (brand-*, ink).
+	   Defaults are Haluan gold; UI templates override them per client. */
+	:root {
+		--brand-50: 255 251 234;
+		--brand-100: 255 243 196;
+		--brand-200: 255 231 138;
+		--brand-300: 255 218 82;
+		--brand-400: 255 207 46;
+		--brand-500: 254 194 14;
+		--brand-600: 217 157 0;
+		--brand-700: 180 119 0;
+		--brand-800: 146 91 14;
+		--brand-900: 120 74 15;
+		--brand-ink: 0 0 0;
+	}
+
 	html {
 		font-family: 'DM Sans', sans-serif !important;
 		font-feature-settings: 'kern' !important;
