@@ -10,6 +10,7 @@ import FormsSection from "./sections/FormsSection";
 import FeedbackSection from "./sections/FeedbackSection";
 import PopupsSection from "./sections/PopupsSection";
 import DataDisplaySection from "./sections/DataDisplaySection";
+import TablesSection from "./sections/TablesSection";
 import WebsiteSection from "./sections/WebsiteSection";
 import DashboardSection from "./sections/DashboardSection";
 import HandoffSection from "./sections/HandoffSection";
@@ -34,6 +35,7 @@ const COMPONENTS = {
   feedback:    FeedbackSection,
   popups:      PopupsSection,
   data:        DataDisplaySection,
+  tables:      TablesSection,
   website:     WebsiteSection,
   dashboard:   DashboardSection,
   handoff:     HandoffSection,

@@ -9,6 +9,7 @@ export const SECTION_IDS = [
   "feedback",
   "popups",
   "data",
+  "tables",
   "website",
   "dashboard",
   "handoff",
