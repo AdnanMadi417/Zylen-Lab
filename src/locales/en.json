@@ -2973,6 +2973,13 @@
         "help_cta": "Contact support"
       }
     },
+    "mobile": {
+      "title": "Mobile",
+      "intro": "The same screens on a phone. Each one is the real responsive layout at phone width — scroll inside a frame to see the whole page.",
+      "screen_website": "Website",
+      "screen_dashboard": "Dashboard",
+      "screen_signin": "Sign in"
+    },
     "handoff": {
       "title": "Developer handoff",
       "intro": "Everything a developer needs to build {{client}}'s product with these components: a Tailwind config and base CSS generated from this guide. Drop both into the project and every class on this page works as shown.",

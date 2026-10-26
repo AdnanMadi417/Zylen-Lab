@@ -14,6 +14,7 @@ import TablesSection from "./sections/TablesSection";
 import WebsiteSection from "./sections/WebsiteSection";
 import AuthSection from "./sections/AuthSection";
 import DashboardSection from "./sections/DashboardSection";
+import MobileSection from "./sections/MobileSection";
 import HandoffSection from "./sections/HandoffSection";
 import { SECTION_IDS, sectionNumber } from "../constants/sections";
 import {
@@ -40,6 +41,7 @@ const COMPONENTS = {
   website:     WebsiteSection,
   auth:        AuthSection,
   dashboard:   DashboardSection,
+  mobile:      MobileSection,
   handoff:     HandoffSection,
 };
 

@@ -9,6 +9,7 @@ import BeneficiaryLayout   from "layouts/beneficiary";
 import AuthLayout          from "layouts/auth";
 import PublicLayout        from "layouts/public";
 import StyleGuidePage      from "views/public/styleGuide";
+import StyleGuidePreviewPage from "views/public/styleGuide/Preview";
 import ZylenLabPage       from "views/public/zylenLab";
 import { CLIENTS }         from "components/features/styleGuide/constants/clients";
 
@@ -16,12 +17,14 @@ import { CLIENTS }         from "components/features/styleGuide/constants/client
 // mode). Set to false to restore the full site.
 const STYLE_GUIDE_ONLY = true;
 
-// One unlisted page per client: /ui-template-<client>-<year>.
+// One unlisted page per client: /ui-template-<client>-<year>, plus single
+// screens at /<slug>/preview/:screen for the guide's phone frames.
 // Old /style-guide links go to the Haluan template.
 const uiTemplateRoutes = () => [
-  ...CLIENTS.map((client) => (
-    <Route key={client.id} path={client.slug} element={<StyleGuidePage client={client} />} />
-  )),
+  ...CLIENTS.flatMap((client) => [
+    <Route key={client.id} path={client.slug} element={<StyleGuidePage client={client} />} />,
+    <Route key={`${client.id}-preview`} path={`${client.slug}/preview/:screen`} element={<StyleGuidePreviewPage client={client} />} />,
+  ]),
   <Route key="style-guide" path="style-guide" element={<Navigate to="/ui-template-haluan-2026" replace />} />,
 ];
 

@@ -13,6 +13,7 @@ export const SECTION_IDS = [
   "website",
   "auth",
   "dashboard",
+  "mobile",
   "handoff",
 ];
 

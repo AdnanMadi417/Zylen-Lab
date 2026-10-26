@@ -9,6 +9,7 @@ import {
   MdLocationOn,
   MdLock,
   MdFormatQuote,
+  MdMenu,
 } from "react-icons/md";
 import StarRating from "components/ui/StarRating";
 import ClientLogo from "./ClientLogo";
@@ -34,15 +35,17 @@ const ImageSlot = ({ className = "" }) => (
  * public components (PublicNavbar, HeroSection, NewsCard, CallToAction,
  * Footer), which fetch Haluan data and can't render inside a template.
  * Copy: styleGuide.website.* (override per client under uiTemplates).
+ * `bare` drops the browser chrome (used in the phone frames).
  */
-const WebsitePreview = () => {
+const WebsitePreview = ({ bare = false }) => {
   const t = useGuideT();
   const s = (k, o) => t(`styleGuide.website.${k}`, o);
   const clientName = useClientName();
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div className={bare ? "bg-white" : "overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"}>
       {/* ── Browser chrome ── */}
+      {!bare && (
       <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-50 px-4 py-2.5" aria-hidden="true">
         <div className="flex gap-1.5">
           <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
@@ -54,6 +57,7 @@ const WebsitePreview = () => {
           <span className="truncate">{s("url")}</span>
         </div>
       </div>
+      )}
 
       {/* ── Navbar ── */}
       <div className="flex items-center justify-between gap-4 border-b border-slate-100 px-6 py-3.5">
@@ -75,6 +79,9 @@ const WebsitePreview = () => {
           <span className="hidden px-3 py-2 text-sm font-medium text-slate-500 sm:inline">{s("sign_in")}</span>
           <span className="rounded-full bg-brand-500 px-5 py-2 text-sm font-bold text-on-brand shadow-sm shadow-brand-500/30">
             {s("nav_cta")}
+          </span>
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl text-slate-500 lg:hidden">
+            <MdMenu className="h-5 w-5" />
           </span>
         </div>
       </div>
