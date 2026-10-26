@@ -26,7 +26,7 @@ const CallToAction = () => {
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-7 py-3 text-sm font-bold text-slate-900 shadow-glow-brand transition-all duration-200 ease-in-out hover:-translate-y-px active:scale-[0.98]"
+            className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-7 py-3 text-sm font-bold text-on-brand shadow-glow-brand transition-all duration-200 ease-in-out hover:-translate-y-px active:scale-[0.98]"
           >
             <MdPeople className="h-4 w-4" /> {t("about.become_member")}
           </Link>

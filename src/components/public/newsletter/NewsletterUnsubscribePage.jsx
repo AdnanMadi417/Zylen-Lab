@@ -32,7 +32,7 @@ export default function NewsletterUnsubscribePage() {
           <p className="mb-6 text-sm text-slate-400">{t("newsletterPublic.error_body")}</p>
         </>
       )}
-      <Link to="/" className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90">
+      <Link to="/" className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-brand transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90">
         <MdMailOutline className="h-4 w-4" /> {t("newsletterPublic.back_home")}
       </Link>
     </div>

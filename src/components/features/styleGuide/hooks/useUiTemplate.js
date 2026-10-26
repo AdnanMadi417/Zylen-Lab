@@ -34,22 +34,25 @@ export const useGuideT = () => {
   );
 };
 
+// Matches --brand-on in index.css (slate-900), for light brand colours.
+export const DEFAULT_ON_BRAND = "#0F172A";
+
 const toChannels = (hex) =>
   [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(" ");
 
 /**
- * Applies the client's palette to the CSS variables behind Tailwind's brand-*
- * and ink colours (on <html>, so portals/modals pick it up too). Restores the
- * defaults from index.css on unmount.
+ * Applies the client's palette to the CSS variables behind Tailwind's brand-*,
+ * ink and on-brand colours (on <html>, so portals/modals pick it up too).
+ * Restores the defaults from index.css on unmount.
  */
-export const useApplyClientColors = ({ brand, ink }) => {
+export const useApplyClientColors = ({ brand, ink, onBrand = DEFAULT_ON_BRAND }) => {
   useEffect(() => {
     const root = document.documentElement.style;
-    const vars = { "--brand-ink": toChannels(ink) };
+    const vars = { "--brand-ink": toChannels(ink), "--brand-on": toChannels(onBrand) };
     Object.entries(brand).forEach(([shade, hex]) => {
       vars[`--brand-${shade}`] = toChannels(hex);
     });
     Object.entries(vars).forEach(([k, v]) => root.setProperty(k, v));
     return () => Object.keys(vars).forEach((k) => root.removeProperty(k));
-  }, [brand, ink]);
+  }, [brand, ink, onBrand]);
 };

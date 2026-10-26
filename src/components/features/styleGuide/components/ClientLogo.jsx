@@ -18,7 +18,7 @@ const ClientLogo = ({ className = "", decorative = false }) => {
       role={decorative ? undefined : "img"}
       aria-label={decorative ? undefined : alt}
       aria-hidden={decorative || undefined}
-      className={`flex items-center justify-center bg-ink font-bold text-brand-500 ${className}`}
+      className={`flex items-center justify-center bg-ink font-bold text-brand-300 ${className}`}
     >
       {name.charAt(0)}
     </span>

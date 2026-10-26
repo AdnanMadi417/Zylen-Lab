@@ -181,6 +181,8 @@ module.exports = {
         ])
       ),
       ink: "rgb(var(--brand-ink) / <alpha-value>)",
+      // Text/icons on a solid brand-500 fill (dark on light brands, white on dark ones).
+      "on-brand": "rgb(var(--brand-on) / <alpha-value>)",
       gray: {
         50: "#f8f9fa",
         100: "#edf2f7",

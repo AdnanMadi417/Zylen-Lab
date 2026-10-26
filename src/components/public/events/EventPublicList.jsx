@@ -102,7 +102,7 @@ function EventCard({ event, onClick, isBeneficiary, user, enableApply }) {
                 type="button"
                 onClick={handleApply}
                 disabled={applying}
-                className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-brand-500 py-2 text-xs font-bold text-slate-900 transition-all duration-200 ease-in-out hover:-translate-y-px active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-brand-500 py-2 text-xs font-bold text-on-brand transition-all duration-200 ease-in-out hover:-translate-y-px active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {applying ? (
                   <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent" />

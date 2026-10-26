@@ -91,7 +91,7 @@ const PublicNavbar = () => {
             </Link>
             <Link
               to="/apply"
-              className="rounded-full bg-brand-500 px-5 py-2 text-sm font-bold text-slate-900 shadow-sm shadow-brand-500/30 transition-all duration-200 ease-in-out hover:-translate-y-px hover:bg-brand-600 active:scale-[0.98]"
+              className="rounded-full bg-brand-500 px-5 py-2 text-sm font-bold text-on-brand shadow-sm shadow-brand-500/30 transition-all duration-200 ease-in-out hover:-translate-y-px hover:bg-brand-600 active:scale-[0.98]"
             >
               {t("nav.register_beneficiary")}
             </Link>
@@ -149,7 +149,7 @@ const PublicNavbar = () => {
               <Link
                 to="/apply"
                 onClick={() => setMenuOpen(false)}
-                className="rounded-xl bg-brand-500 px-3 py-2.5 text-center text-sm font-bold text-slate-900 hover:bg-brand-600"
+                className="rounded-xl bg-brand-500 px-3 py-2.5 text-center text-sm font-bold text-on-brand hover:bg-brand-600"
               >
                 {t("nav.register_beneficiary")}
               </Link>

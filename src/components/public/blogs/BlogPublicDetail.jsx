@@ -33,7 +33,7 @@ export default function BlogPublicDetail() {
         <MdArticle className="mx-auto mb-4 h-16 w-16 text-slate-200" />
         <h2 className="mb-2 text-xl font-bold text-slate-700">{t("blogsPublic.not_found_title")}</h2>
         <p className="mb-6 text-sm text-slate-400">{t("blogsPublic.not_found_body")}</p>
-        <button onClick={() => navigate("/blogs")} className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90">
+        <button onClick={() => navigate("/blogs")} className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-brand transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90">
           <MdArrowBack className="h-4 w-4" /> {t("blogsPublic.back_to_blogs")}
         </button>
       </div>

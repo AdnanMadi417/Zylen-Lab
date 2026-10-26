@@ -58,7 +58,7 @@ const NewsletterSection = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-bold text-slate-900 shadow-glow-brand-sm transition-all duration-200 ease-in-out hover:-translate-y-px active:scale-[0.98] disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-bold text-on-brand shadow-glow-brand-sm transition-all duration-200 ease-in-out hover:-translate-y-px active:scale-[0.98] disabled:opacity-60"
                 >
                   {loading ? t("home.subscribing") : t("home.subscribe")} <MdArrowForward className="h-4 w-4" />
                 </button>

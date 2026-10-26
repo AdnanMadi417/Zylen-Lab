@@ -42,7 +42,7 @@ export default function EventPublicDetail({ basePath = "/events", enableApply = 
         <MdEvent className="mx-auto mb-4 h-16 w-16 text-slate-200" />
         <h2 className="mb-2 text-xl font-bold text-slate-700">{t("eventsPublic.not_found_title")}</h2>
         <p className="mb-6 text-sm text-slate-400">{t("eventsPublic.not_found_body")}</p>
-        <button onClick={() => navigate(basePath)} className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90">
+        <button onClick={() => navigate(basePath)} className="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-brand transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90">
           <MdArrowBack className="h-4 w-4" /> {t("eventsPublic.back_to_events")}
         </button>
       </div>
@@ -128,7 +128,7 @@ export default function EventPublicDetail({ basePath = "/events", enableApply = 
                 <p className="text-sm text-slate-600">{t("eventsPublic.signin_prompt")}</p>
                 <Link
                   to="/auth/sign-in"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-slate-900 transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-semibold text-on-brand transition-all duration-200 hover:-translate-y-px hover:bg-brand-500/90"
                 >
                   {t("eventsPublic.signin_cta")}
                 </Link>

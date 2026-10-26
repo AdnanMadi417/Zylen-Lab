@@ -87,7 +87,7 @@ const ImageUploadField = ({
           </label>
 
           {/* Upload badge */}
-          <label className={`absolute -bottom-1.5 -right-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-slate-900 ring-2 ring-white transition-all duration-150 hover:bg-brand-600 ${simpleUploading ? "pointer-events-none opacity-50" : "cursor-pointer"}`}>
+          <label className={`absolute -bottom-1.5 -right-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-on-brand ring-2 ring-white transition-all duration-150 hover:bg-brand-600 ${simpleUploading ? "pointer-events-none opacity-50" : "cursor-pointer"}`}>
             <MdPhotoCamera className="h-3.5 w-3.5" />
             <input type="file" multiple={multiple} accept={resolvedAccept} className="hidden" onChange={handleSimpleUpload} disabled={simpleUploading} />
           </label>

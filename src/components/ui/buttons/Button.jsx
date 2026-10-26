@@ -1,7 +1,7 @@
 import React from "react";
 
 const variants = {
-  primary:   "bg-brand-500 text-slate-900 border-brand-500 enabled:hover:bg-brand-600 enabled:hover:border-brand-600 enabled:active:bg-brand-700",
+  primary:   "bg-brand-500 text-on-brand border-brand-500 enabled:hover:bg-brand-600 enabled:hover:border-brand-600 enabled:active:bg-brand-700",
   secondary: "bg-slate-50 text-brand-800 border-brand-500 enabled:hover:bg-brand-500/10 enabled:active:bg-brand-500/20",
   ghost:     "bg-slate-50 text-slate-500 border-slate-200 enabled:hover:border-slate-300 enabled:hover:bg-slate-100/50 enabled:active:bg-slate-100",
   danger:    "bg-white text-red-500 border-red-300 enabled:hover:bg-red-50 enabled:hover:border-red-400 enabled:active:bg-red-100",

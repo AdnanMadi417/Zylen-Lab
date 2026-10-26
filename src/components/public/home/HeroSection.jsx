@@ -11,7 +11,7 @@ const HeroSection = () => {
   const { stats, loading } = useGetStats();
 
   const STATS = [
-    { value: loading ? "—" : `${stats?.projects?.by_status?.active ?? 0}+`, label: t("hero.active_projects"), icon: <MdCampaign className="h-4 w-4" />,         color: "bg-brand-500 text-slate-900",     delay: "0.5s" },
+    { value: loading ? "—" : `${stats?.projects?.by_status?.active ?? 0}+`, label: t("hero.active_projects"), icon: <MdCampaign className="h-4 w-4" />,         color: "bg-brand-500 text-on-brand",     delay: "0.5s" },
     { value: loading ? "—" : `${stats?.total_beneficiaries_helped ?? 0}+`,  label: t("hero.beneficiaries"),   icon: <MdPeople className="h-4 w-4" />,           color: "bg-black text-brand-500",   delay: "0.8s" },
   ];
 

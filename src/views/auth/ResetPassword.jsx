@@ -56,7 +56,7 @@ export default function ResetPassword() {
         <p className="mt-2 text-sm text-slate-400">{t("auth.reset_done_body")}</p>
         <Link
           to="/auth/sign-in"
-          className="mt-7 flex h-11 w-full items-center justify-center rounded-full bg-brand-500 text-sm font-semibold text-slate-900 shadow-sm shadow-brand-500/20 transition-all duration-200 hover:bg-brand-600 active:scale-[0.98]"
+          className="mt-7 flex h-11 w-full items-center justify-center rounded-full bg-brand-500 text-sm font-semibold text-on-brand shadow-sm shadow-brand-500/20 transition-all duration-200 hover:bg-brand-600 active:scale-[0.98]"
         >
           {t("auth.sign_in")}
         </Link>

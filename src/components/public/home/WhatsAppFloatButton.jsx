@@ -17,7 +17,7 @@ const WhatsAppFloatButton = ({ phone = "601156563044", message }) => {
       {/* Tooltip bubble */}
       {showTooltip && (
         <div className="flex items-start gap-2 rounded-2xl bg-white p-3.5 pr-4 shadow-xl ring-1 ring-slate-200 animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-500 text-slate-900">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-500 text-on-brand">
             <FaWhatsapp size={18} />
           </div>
           <div className="min-w-0">
@@ -39,7 +39,7 @@ const WhatsAppFloatButton = ({ phone = "601156563044", message }) => {
         target="_blank"
         rel="noreferrer"
         onMouseEnter={() => setShowTooltip(true)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-slate-900 shadow-lg shadow-brand-500/40 transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/50 active:scale-[0.95]"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-on-brand shadow-lg shadow-brand-500/40 transition-all duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/50 active:scale-[0.95]"
       >
         <FaWhatsapp size={26} />
         {/* Pulse ring */}

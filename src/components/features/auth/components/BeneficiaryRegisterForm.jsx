@@ -40,7 +40,7 @@ const Hero = ({ step }) => {
   const { t } = useTranslation();
   const STEPS = useSteps();
   return (
-  <div className="relative overflow-hidden bg-brand-500 px-6 pb-16 pt-14 text-center text-slate-900">
+  <div className="relative overflow-hidden bg-brand-500 px-6 pb-16 pt-14 text-center text-on-brand">
     {/* Decorative dots */}
     <div className="pointer-events-none absolute inset-0 bg-dot-white bg-[size:24px_24px] opacity-[0.06]" />
     <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/5" />

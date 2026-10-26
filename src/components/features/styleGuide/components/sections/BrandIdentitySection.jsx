@@ -26,16 +26,16 @@ const BrandIdentitySection = () => {
       {/* ── Primary brand colour ── */}
       <div className="grid overflow-hidden rounded-primary border border-slate-200 lg:grid-cols-5">
         <div className="relative flex min-h-[260px] flex-col justify-between p-8 lg:col-span-3" style={{ backgroundColor: PRIMARY.hex }}>
-          <span className="w-fit rounded-full bg-ink px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-500">
+          <span className="w-fit rounded-full bg-on-brand px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-500">
             {s("primary_badge")}
           </span>
-          <div className="text-ink">
+          <div className="text-on-brand">
             <p className="text-4xl font-bold">{s(`names.${PRIMARY.nameKey}`)}</p>
             <p className="mt-2 font-mono text-lg" dir="ltr">{PRIMARY.hex}</p>
             <div className="mt-3 flex flex-wrap gap-2" dir="ltr">
-              <code className="rounded bg-ink/10 px-2 py-0.5 font-mono text-xs">{PRIMARY.token}</code>
+              <code className="rounded bg-on-brand/15 px-2 py-0.5 font-mono text-xs">{PRIMARY.token}</code>
               {PRIMARY.aliases.map((a) => (
-                <code key={a} className="rounded bg-ink/10 px-2 py-0.5 font-mono text-xs">{a}</code>
+                <code key={a} className="rounded bg-on-brand/15 px-2 py-0.5 font-mono text-xs">{a}</code>
               ))}
             </div>
           </div>

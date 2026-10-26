@@ -43,7 +43,7 @@ const CoverageMap = () => {
                 transitionDelay: `${i * 70}ms`,
               }}
             >
-              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${i === 0 ? "bg-brand-500 text-slate-900" : "bg-brand-500/10 text-brand-800"}`}>
+              <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${i === 0 ? "bg-brand-500 text-on-brand" : "bg-brand-500/10 text-brand-800"}`}>
                 <MdLocationOn className="h-5 w-5" />
               </div>
               <div>

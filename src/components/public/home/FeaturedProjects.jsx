@@ -56,7 +56,7 @@ const FeaturedProjects = () => {
                     <StorageImage fileKey={p.cover_image} alt={p.title} className="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105" />
                   )}
                   {p?.category?.name && (
-                    <span className="absolute left-3 top-3 rounded-full bg-brand-500/90 px-3 py-1 text-xs font-bold text-slate-900 backdrop-blur-sm">
+                    <span className="absolute left-3 top-3 rounded-full bg-brand-500/90 px-3 py-1 text-xs font-bold text-on-brand backdrop-blur-sm">
                       {p.category.name}
                     </span>
                   )}
