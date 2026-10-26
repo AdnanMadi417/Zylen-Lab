@@ -59,7 +59,7 @@ const DataTable = ({
   return (
     <div className={className}>
       {/* ── Table ── */}
-      <div className="overflow-x-auto rounded-lg rounded-b-none border border-b-0 border-slate-200">
+      <div className={`overflow-x-auto rounded-lg border border-slate-200 ${pageSize > 0 ? "rounded-b-none border-b-0" : ""}`}>
         <table className={`w-full ${minWidth} bg-white text-sm`}>
 
           {/* Head */}
