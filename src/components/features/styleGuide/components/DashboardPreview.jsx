@@ -109,7 +109,7 @@ const DashboardPreview = () => {
         {/* ── Sidebar ── */}
         <aside className="hidden w-56 shrink-0 flex-col border-slate-100 bg-white ltr:border-r rtl:border-l lg:flex">
           <div className="flex items-center gap-3 px-5 pb-4 pt-6">
-            <ClientLogo className="h-10 w-10 shrink-0 rounded-xl text-base" />
+            <ClientLogo variant="icon" className="h-10 w-10 shrink-0 rounded-xl text-base" />
             <p className="truncate text-sm font-bold text-navy-700">{clientName}</p>
           </div>
           <div className="mx-5 h-px bg-gray-100" />

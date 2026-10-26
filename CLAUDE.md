@@ -14,9 +14,12 @@ stack, scripts, and env setup.
   to client templates: clients shouldn't discover each other.
 - `/ui-template-<client>-<year>` — one unlisted page per client, rendered by
   `features/styleGuide/` from a config in `styleGuide/constants/clients/`
-  (registered in `clients/index.js`). Each config sets name, logo, brand scale
-  (50–900) and ink colour; `useApplyClientColors` writes them to the `--brand-*` /
-  `--brand-ink` CSS variables behind Tailwind's `brand-*` and `ink` colours.
+  (registered in `clients/index.js`). Each config sets name, logos (`logo`, optional
+  `logoOnDark` / `logoIcon`), colours (brand scale 50–900, `ink`, `onBrand`,
+  optional `accents`) and optional Google `fonts` ({ sans, arabic, display }).
+  `useApplyClientColors` / `useApplyClientFonts` write them to the `--brand-*` and
+  `--font-*` CSS variables behind Tailwind's `brand-*`, `ink`, `on-brand`, `font-dm`
+  and `font-display`, so shared components pick up each client's branding.
 - Copy for templates lives under `styleGuide` in the locales, with `{{client}}`
   interpolated; a client overrides any key at `uiTemplates.<id>.*` (via `useGuideT`).
 

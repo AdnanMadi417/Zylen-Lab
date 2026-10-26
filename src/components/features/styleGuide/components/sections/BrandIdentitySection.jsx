@@ -1,7 +1,7 @@
 import React from "react";
 import { MdCheck, MdClose, MdLightbulbOutline, MdWarningAmber } from "react-icons/md";
 import GuideSection from "../GuideSection";
-import ClientLogo from "../ClientLogo";
+import ClientLogo, { LOGO_FIELDS } from "../ClientLogo";
 import { ColorCard, ScaleStrip, ContrastBadge, ProposedTag, toCss, contrastRatio } from "../ColorSwatch";
 import { getBrandColors, SEMANTIC } from "../../constants/colors";
 import { useTranslation } from "react-i18next";
@@ -65,6 +65,32 @@ const BrandIdentitySection = () => {
           </div>
         </div>
       </div>
+
+      {/* ── Logo versions ── */}
+      <Group title={s("logo_title")} intro={s("logo_intro")}>
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            { variant: "default", bg: "bg-white", size: "h-24 w-24 rounded-xl text-4xl" },
+            { variant: "onDark", bg: "bg-ink", size: "h-24 w-24 rounded-xl text-4xl" },
+            { variant: "icon", bg: "bg-slate-50", size: "h-14 w-14 rounded-xl text-2xl" },
+          ].map(({ variant, bg, size }) => {
+            const supplied = Boolean(client[LOGO_FIELDS[variant]]);
+            return (
+              <div key={variant} className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                <div className={`flex h-40 items-center justify-center ${bg}`}>
+                  <ClientLogo variant={variant} className={size} />
+                </div>
+                <div className="p-3.5">
+                  <p className="text-sm font-semibold text-slate-900">{s(`logo_${variant}`)}</p>
+                  <p className={`mt-0.5 text-xs ${supplied ? "text-slate-500" : "text-amber-600"}`}>
+                    {supplied ? s("logo_supplied") : s(client.logo ? "logo_fallback" : "logo_missing")}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Group>
 
       {/* ── Primary palette ── */}
       <Group title={s("palette_title")} intro={s("palette_intro")}>

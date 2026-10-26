@@ -5,7 +5,10 @@ const haluan = {
   id: "haluan",
   slug: "ui-template-haluan-2026",
   name: { en: "Haluan", ar: "هالوان" },
+  // One file covers every version: gold on black works on light and dark.
   logo,
+  logoOnDark: logo,
+  logoIcon: logo,
   colors: {
     brand: {
       50: "#FFFBEA", 100: "#FFF3C4", 200: "#FFE78A", 300: "#FFDA52", 400: "#FFCF2E",

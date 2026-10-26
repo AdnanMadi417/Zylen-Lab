@@ -2575,7 +2575,15 @@
       "role_black": "The logo's dark ink. Use it for the footer, dark heroes, brand moments on dark backgrounds and strong text on the brand colour.",
       "role_navy_deep": "Darkest navy, for hero backgrounds and deep surfaces.",
       "role_slate": "Primary text colour and neutral interface greys.",
-      "surface_selected": "Selected / active"
+      "surface_selected": "Selected / active",
+      "logo_title": "Logo",
+      "logo_intro": "The approved versions of the logo. Use the supplied files as they are: don't recolour, stretch or redraw them.",
+      "logo_default": "Primary — on light backgrounds",
+      "logo_onDark": "On dark backgrounds",
+      "logo_icon": "Icon — app, favicon and small spaces",
+      "logo_supplied": "Supplied by the client.",
+      "logo_fallback": "Not supplied yet — showing the primary logo.",
+      "logo_missing": "Not supplied yet — showing a placeholder."
     },
     "typography": {
       "title": "Typography",

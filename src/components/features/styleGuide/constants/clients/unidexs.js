@@ -1,5 +1,7 @@
 // Unidexs — PLACEHOLDER branding until the client's logo, colours and fonts
-// arrive. Replace `colors` and add `logo` (put the file in src/assets/branding/).
+// arrive. Replace `colors`, add `logo` (+ optional `logoOnDark`, `logoIcon`;
+// files in src/assets/branding/) and optional Google `fonts`
+// ({ sans, arabic, display }) — see kindergarten.js.
 const unidexs = {
   id: "unidexs",
   slug: "ui-template-unidexs-2026",

@@ -96,7 +96,7 @@ const GuidePage = () => {
       <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur print:static">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">
-            <ClientLogo className="h-9 w-9 shrink-0 rounded-md text-base" />
+            <ClientLogo variant="icon" className="h-9 w-9 shrink-0 rounded-md text-base" />
             <div className="min-w-0">
               <p className="truncate text-sm font-bold text-slate-900">{clientName}</p>
               <p className="truncate text-xs text-slate-400">{t("styleGuide.meta_title")}</p>
@@ -140,6 +140,7 @@ const GuidePage = () => {
             <span className="h-2 w-8 rounded-full bg-white" />
           </div>
           <ClientLogo
+            variant="onDark"
             decorative
             className="absolute end-6 top-1/2 hidden h-56 w-56 -translate-y-1/2 rounded-3xl text-8xl lg:flex"
           />

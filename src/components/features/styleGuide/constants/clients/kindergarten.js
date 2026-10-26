@@ -1,6 +1,11 @@
 // Kindergarten — brand colours from the client (Ocean Teal primary + four
-// accents). Name, logo and fonts are still PLACEHOLDERS: add `logo` (file in
-// src/assets/branding/) and rename id/slug/name once the client name is known.
+// accents). Name, logo and fonts are still PLACEHOLDERS: add `logo` (+ optional
+// `logoOnDark` and `logoIcon`; files in src/assets/branding/), and rename
+// id/slug/name once the client name is known.
+//
+// Fonts: add Google Fonts families, e.g.
+//   fonts: { sans: "Nunito", arabic: "Tajawal", display: "Baloo 2" },
+// or { family: "Baloo 2", weights: "400;700" } if a family lacks some weights.
 //
 // The 50–900 scale is generated from Ocean Teal (#1B687D = 500): tints mixed
 // with white, shades with black. Teal is dark, so text on it is white (onBrand).

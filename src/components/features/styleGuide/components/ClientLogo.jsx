@@ -1,13 +1,21 @@
 import React from "react";
 import { useClientName, useUiTemplate } from "../hooks/useUiTemplate";
 
+/** Config field for each logo version; missing versions fall back to `logo`. */
+export const LOGO_FIELDS = { default: "logo", onDark: "logoOnDark", icon: "logoIcon" };
+
+/** The logo file for a version, or null when the client hasn't supplied one. */
+export const logoFor = (client, variant = "default") => client[LOGO_FIELDS[variant]] ?? client.logo ?? null;
+
 /**
- * The active client's logo, or — until one is supplied — an ink tile with the
- * client's initial in the brand colour.
+ * The active client's logo in the requested version ("default" | "onDark" |
+ * "icon"), or — until one is supplied — an ink tile with the client's initial
+ * in the brand colour.
  */
-const ClientLogo = ({ className = "", decorative = false }) => {
-  const { logo } = useUiTemplate();
+const ClientLogo = ({ variant = "default", className = "", decorative = false }) => {
+  const client = useUiTemplate();
   const name = useClientName();
+  const logo = logoFor(client, variant);
   const alt = decorative ? "" : name;
 
   if (logo) {
