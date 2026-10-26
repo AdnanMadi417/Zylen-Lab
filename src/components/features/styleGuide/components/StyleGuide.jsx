@@ -10,6 +10,7 @@ import FormsSection from "./sections/FormsSection";
 import FeedbackSection from "./sections/FeedbackSection";
 import PopupsSection from "./sections/PopupsSection";
 import DataDisplaySection from "./sections/DataDisplaySection";
+import WebsiteSection from "./sections/WebsiteSection";
 import DashboardSection from "./sections/DashboardSection";
 import { SECTION_IDS, sectionNumber } from "../constants/sections";
 import {
@@ -32,6 +33,7 @@ const COMPONENTS = {
   feedback:    FeedbackSection,
   popups:      PopupsSection,
   data:        DataDisplaySection,
+  website:     WebsiteSection,
   dashboard:   DashboardSection,
 };
 
