@@ -7,7 +7,9 @@ import TypographySection from "./sections/TypographySection";
 import FoundationsSection from "./sections/FoundationsSection";
 import ButtonsSection from "./sections/ButtonsSection";
 import FormsSection from "./sections/FormsSection";
+import NavigationSection from "./sections/NavigationSection";
 import FeedbackSection from "./sections/FeedbackSection";
+import ContentSection from "./sections/ContentSection";
 import PopupsSection from "./sections/PopupsSection";
 import DataDisplaySection from "./sections/DataDisplaySection";
 import TablesSection from "./sections/TablesSection";
@@ -34,7 +36,9 @@ const COMPONENTS = {
   foundations: FoundationsSection,
   buttons:     ButtonsSection,
   forms:       FormsSection,
+  navigation:  NavigationSection,
   feedback:    FeedbackSection,
+  content:     ContentSection,
   popups:      PopupsSection,
   data:        DataDisplaySection,
   tables:      TablesSection,
