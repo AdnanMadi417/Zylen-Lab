@@ -2494,7 +2494,6 @@
       "show_code": "Show code",
       "hide_code": "Hide code",
       "copy": "Copy",
-      "print": "Print / PDF",
       "contents": "Contents",
       "hide_contents": "Hide contents"
     },
@@ -3307,7 +3306,7 @@
         },
         "handoff": {
           "title": "Review & hand off",
-          "desc": "You get a private link to your template to review, print as PDF and use as the reference for your product."
+          "desc": "You get a private link to your template to review, share with your team and use as the reference for your product."
         }
       }
     },

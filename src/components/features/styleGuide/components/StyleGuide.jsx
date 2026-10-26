@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { MdTranslate, MdPrint, MdMenu, MdMenuOpen, MdClose } from "react-icons/md";
+import { MdTranslate, MdMenu, MdMenuOpen, MdClose } from "react-icons/md";
 import ClientLogo from "./ClientLogo";
 import BrandIdentitySection from "./sections/BrandIdentitySection";
 import TypographySection from "./sections/TypographySection";
@@ -190,13 +190,6 @@ const GuidePage = () => {
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-2 print:hidden">
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="hidden items-center gap-1.5 rounded-full border border-slate-200 px-3.5 py-2 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-300 sm:inline-flex"
-            >
-              <MdPrint className="h-4 w-4" /> {t("styleGuide.ui.print")}
-            </button>
             <button
               type="button"
               onClick={toggleLanguage}
