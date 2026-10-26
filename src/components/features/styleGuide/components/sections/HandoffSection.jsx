@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { MdCheck, MdContentCopy, MdFileDownload } from "react-icons/md";
+import { MdCheck, MdContentCopy, MdDescription, MdFileDownload } from "react-icons/md";
 import { useGuideT, useUiTemplate } from "../../hooks/useUiTemplate";
 import { accentToken, buildIndexCss, buildTailwindConfig } from "../../utils/tailwindExport";
 import GuideSection from "../GuideSection";
@@ -13,7 +13,8 @@ const download = (filename, text) => {
   URL.revokeObjectURL(url);
 };
 
-const CodePanel = ({ filename, code }) => {
+/** A generated file the developer downloads — the code itself isn't shown on the page. */
+const FileCard = ({ filename, description, code }) => {
   const t = useGuideT();
   const [copied, setCopied] = useState(false);
 
@@ -25,30 +26,33 @@ const CodePanel = ({ filename, code }) => {
   };
 
   return (
-    <div className="overflow-hidden rounded-primary border border-slate-200 bg-white">
-      <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-3">
-        <p className="font-mono text-sm font-semibold text-slate-900" dir="ltr">{filename}</p>
-        <div className="flex shrink-0 gap-2 print:hidden">
-          <button
-            type="button"
-            onClick={copy}
-            className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-slate-300"
-          >
-            {copied ? <MdCheck className="h-3.5 w-3.5" /> : <MdContentCopy className="h-3.5 w-3.5" />}
-            {copied ? t("common.copied") : t("styleGuide.ui.copy")}
-          </button>
-          <button
-            type="button"
-            onClick={() => download(filename.split("/").pop(), code)}
-            className="inline-flex items-center gap-1.5 rounded-full bg-brand-500 px-3 py-1.5 text-xs font-semibold text-on-brand hover:bg-brand-600"
-          >
-            <MdFileDownload className="h-3.5 w-3.5" /> {t("styleGuide.handoff.download")}
-          </button>
+    <div className="flex flex-col gap-4 rounded-primary border border-slate-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex min-w-0 items-center gap-3">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-800">
+          <MdDescription className="h-5 w-5" />
+        </span>
+        <div className="min-w-0">
+          <p className="font-mono text-sm font-semibold text-slate-900" dir="ltr">{filename}</p>
+          <p className="mt-0.5 text-sm text-slate-500">{description}</p>
         </div>
       </div>
-      <pre className="max-h-96 overflow-auto bg-slate-900 p-5 text-xs leading-relaxed text-slate-100" dir="ltr">
-        <code>{code}</code>
-      </pre>
+      <div className="flex shrink-0 gap-2 print:hidden">
+        <button
+          type="button"
+          onClick={copy}
+          className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 px-3.5 py-2 text-xs font-semibold text-slate-600 hover:border-slate-300"
+        >
+          {copied ? <MdCheck className="h-3.5 w-3.5" /> : <MdContentCopy className="h-3.5 w-3.5" />}
+          {copied ? t("common.copied") : t("styleGuide.ui.copy")}
+        </button>
+        <button
+          type="button"
+          onClick={() => download(filename.split("/").pop(), code)}
+          className="inline-flex items-center gap-1.5 rounded-full bg-brand-500 px-3.5 py-2 text-xs font-semibold text-on-brand hover:bg-brand-600"
+        >
+          <MdFileDownload className="h-3.5 w-3.5" /> {t("styleGuide.handoff.download")}
+        </button>
+      </div>
     </div>
   );
 };
@@ -82,8 +86,10 @@ const HandoffSection = () => {
           ))}
         </div>
       </div>
-      <CodePanel filename="tailwind.config.js" code={config} />
-      <CodePanel filename="src/index.css" code={css} />
+      <div className="flex flex-col gap-3">
+        <FileCard filename="tailwind.config.js" description={s("config_desc")} code={config} />
+        <FileCard filename="src/index.css" description={s("css_desc")} code={css} />
+      </div>
     </GuideSection>
   );
 };
