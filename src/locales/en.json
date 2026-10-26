@@ -2775,7 +2775,48 @@
       "tasks_desc": "Outstanding items that need attention.",
       "task_1": "Review 4 pending applications",
       "task_2": "Reply to 2 contact messages",
-      "task_3": "Publish next week's event"
+      "task_3": "Publish next week's event",
+      "screen": {
+        "name": "Dashboard screen",
+        "desc": "A complete admin screen built from the components below: sidebar, top bar, stat cards, a chart, recent activity and a data table, all in the brand colours.",
+        "nav_dashboard": "Dashboard",
+        "nav_members": "Members",
+        "nav_bookings": "Bookings",
+        "nav_messages": "Messages",
+        "nav_reports": "Reports",
+        "nav_settings": "Settings",
+        "user_name": "Sara Ahmad",
+        "user_role": "Administrator",
+        "search": "Search…",
+        "welcome": "Welcome back, {{name}}",
+        "welcome_sub": "Here's what's happening today.",
+        "export": "Export report",
+        "stat_members": "Total members",
+        "stat_bookings": "Bookings this month",
+        "stat_requests": "Open requests",
+        "stat_messages": "Unread messages",
+        "chart_title": "Members by plan",
+        "segment_a": "Basic",
+        "segment_b": "Standard",
+        "segment_c": "Premium",
+        "activity_title": "Recent activity",
+        "activity_1": "Booking #1042 was confirmed",
+        "activity_2": "New member request awaiting review",
+        "activity_3": "Payment received from Omar Khalid",
+        "activity_4": "Monthly report is ready",
+        "table_title": "Latest registrations",
+        "col_name": "Name",
+        "col_plan": "Plan",
+        "col_date": "Date",
+        "col_status": "Status",
+        "row_1": "Aisha Rahman",
+        "row_2": "Omar Khalid",
+        "row_3": "Lina Hassan",
+        "row_4": "Yusuf Ali",
+        "status_active": "Active",
+        "status_pending": "Pending",
+        "status_inactive": "Inactive"
+      }
     }
   },
   "uiTemplates": {
@@ -2810,6 +2851,28 @@
       "brand": {
         "names": {
           "brand_gold": "Ocean Teal"
+        }
+      },
+      "dashboard": {
+        "screen": {
+          "nav_members": "Children",
+          "nav_bookings": "Classes",
+          "nav_messages": "Parents",
+          "nav_reports": "Attendance",
+          "welcome_sub": "Here's what's happening at the kindergarten today.",
+          "stat_members": "Children enrolled",
+          "stat_bookings": "Classes today",
+          "stat_requests": "Pending registrations",
+          "stat_messages": "Messages from parents",
+          "chart_title": "Children by age group",
+          "segment_a": "3–4 years",
+          "segment_b": "4–5 years",
+          "segment_c": "5–6 years",
+          "activity_1": "Lina Hassan's registration was approved",
+          "activity_2": "New registration awaiting review",
+          "activity_3": "Message from Omar Khalid's parent",
+          "activity_4": "Weekly attendance report is ready",
+          "col_plan": "Age group"
         }
       }
     }

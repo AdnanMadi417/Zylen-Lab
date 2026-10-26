@@ -7,6 +7,7 @@ import NotificationsFeed from "components/ui/dashboard/NotificationsFeed";
 import PendingTasksList from "components/ui/dashboard/PendingTasksList";
 import GuideSection from "../GuideSection";
 import ComponentShowcase from "../ComponentShowcase";
+import DashboardPreview from "../DashboardPreview";
 
 const DashboardSection = () => {
   const t = useGuideT();
@@ -23,6 +24,10 @@ const DashboardSection = () => {
 
   return (
     <GuideSection id="dashboard" title={s("title")} intro={s("intro")}>
+      <ComponentShowcase title={s("screen.name")} description={s("screen.desc")} canvas="muted">
+        <DashboardPreview />
+      </ComponentShowcase>
+
       <ComponentShowcase
         title="QuickActionsGrid"
         description={s("quick_desc")}
