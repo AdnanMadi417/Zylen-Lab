@@ -15,6 +15,7 @@ import { SECTION_IDS, sectionNumber } from "../constants/sections";
 import {
   UiTemplateProvider,
   useApplyClientColors,
+  useApplyClientFonts,
   useClientName,
   useGuideT,
   useUiTemplate,
@@ -65,6 +66,7 @@ const GuidePage = () => {
   const isAr = i18n.language === "ar";
   const active = useActiveSection(SECTION_IDS);
   useApplyClientColors(client.colors);
+  useApplyClientFonts(client.fonts);
 
   // Direction + lang follow the selected language, as in PublicLayout.
   useEffect(() => {

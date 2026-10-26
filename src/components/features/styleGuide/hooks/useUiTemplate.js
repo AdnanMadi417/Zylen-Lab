@@ -56,3 +56,39 @@ export const useApplyClientColors = ({ brand, ink, onBrand = DEFAULT_ON_BRAND })
     return () => Object.keys(vars).forEach((k) => root.removeProperty(k));
   }, [brand, ink, onBrand]);
 };
+
+// Already loaded by index.css / index.html.
+const PRELOADED_FONTS = ["DM Sans", "Cairo", "Poppins"];
+
+/** "Nunito" or { family: "Nunito", weights: "400;700" } → { family, weights }. */
+export const normalizeFont = (font) =>
+  typeof font === "string" ? { family: font, weights: "400;500;600;700" } : font;
+
+/**
+ * Applies the client's typefaces ({ sans, arabic, display }, each optional) to
+ * the --font-* variables in index.css, loading Google Fonts as needed.
+ * Restores the defaults on unmount.
+ */
+export const useApplyClientFonts = (fonts) => {
+  useEffect(() => {
+    const root = document.documentElement.style;
+    const links = [];
+    const vars = {};
+    ["sans", "arabic", "display"].forEach((role) => {
+      if (!fonts?.[role]) return;
+      const { family, weights } = normalizeFont(fonts[role]);
+      vars[`--font-${role}`] = `'${family}'`;
+      if (PRELOADED_FONTS.includes(family)) return;
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@${weights}&display=swap`;
+      document.head.appendChild(link);
+      links.push(link);
+    });
+    Object.entries(vars).forEach(([k, v]) => root.setProperty(k, v));
+    return () => {
+      Object.keys(vars).forEach((k) => root.removeProperty(k));
+      links.forEach((l) => l.remove());
+    };
+  }, [fonts]);
+};

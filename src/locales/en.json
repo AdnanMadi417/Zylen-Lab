@@ -2582,7 +2582,7 @@
       "intro": "Clean, highly legible typefaces for both English and Arabic, with a consistent scale across the platform.",
       "font_dm": "Primary typeface for English. Used for all interface text and body copy.",
       "font_cairo": "Arabic typeface. Applied automatically when the site is viewed in Arabic.",
-      "font_poppins": "Display typeface for select marketing headlines.",
+      "font_poppins": "Display typeface for headings.",
       "scale": {
         "display": "Display",
         "h1": "Heading 1",

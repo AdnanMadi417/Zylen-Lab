@@ -13,11 +13,9 @@ export const TYPE_SCALE = [
   { key: "overline", className: "text-[11px] font-semibold uppercase tracking-wider text-slate-400", spec: "11px · Semibold · Uppercase" },
 ];
 
-export const FONTS = [
-  { key: "dm",      family: "'DM Sans', sans-serif", usageKey: "font_dm"      },
-  { key: "cairo",   family: "'Cairo', sans-serif",   usageKey: "font_cairo"   },
-  { key: "poppins", family: "'Poppins', sans-serif", usageKey: "font_poppins" },
-];
+// Default typefaces (index.css); a client's `fonts` ({ sans, arabic, display })
+// override them.
+export const DEFAULT_FONTS = { sans: "DM Sans", arabic: "Cairo" };
 
 export const RADII = [
   { name: "rounded-lg",      value: "8px",  className: "rounded-lg"      },
