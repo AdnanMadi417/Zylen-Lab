@@ -21,18 +21,29 @@
 		--brand-900: 120 74 15;
 		--brand-ink: 0 0 0;
 		--brand-on: 15 23 42;
+
+		/* Typefaces — UI templates override these per client. */
+		--font-sans: 'DM Sans';
+		--font-arabic: 'Cairo';
+		--font-display: var(--font-sans);
 	}
 
 	html {
-		font-family: 'DM Sans', sans-serif !important;
+		font-family: var(--font-sans), sans-serif !important;
 		font-feature-settings: 'kern' !important;
 		-webkit-font-smoothing: antialiased;
 		letter-spacing: -0.5px;
 	}
 
 	html[dir="rtl"] {
-		font-family: 'Cairo', sans-serif !important;
+		font-family: var(--font-arabic), sans-serif !important;
 		letter-spacing: 0;
+		--font-display: var(--font-arabic);
+	}
+
+	/* Headings use the display face; Arabic glyphs fall back to the Arabic face. */
+	h1, h2, h3 {
+		font-family: var(--font-display), var(--font-arabic), sans-serif;
 	}
 }
 

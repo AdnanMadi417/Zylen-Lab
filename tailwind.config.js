@@ -107,7 +107,8 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
-        dm: ["DM Sans", "sans-serif"],
+        dm: ["var(--font-sans)", "var(--font-arabic)", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-arabic)", "sans-serif"],
       },
       backgroundImage: {
         // Brand — dots use brand-600 so they stay visible on white.
