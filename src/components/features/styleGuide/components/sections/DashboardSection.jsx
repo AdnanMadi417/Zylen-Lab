@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useGuideT } from "../../hooks/useUiTemplate";
 import { MdAdd, MdEvent, MdArticle, MdPeople } from "react-icons/md";
 import QuickActionsGrid from "components/ui/dashboard/QuickActionsGrid";
@@ -10,13 +11,14 @@ import ComponentShowcase from "../ComponentShowcase";
 const DashboardSection = () => {
   const t = useGuideT();
   const s = (k) => t(`styleGuide.dashboard.${k}`);
+  // `to` points back at this template itself so clicks in the demo are harmless.
+  const here = `${useLocation().pathname}#dashboard`;
 
-  // `to` points back at the guide itself so clicks in the demo are harmless.
   const actions = [
-    { label: s("action_project"), icon: <MdAdd className="h-5 w-5" />, to: "/style-guide#dashboard" },
-    { label: s("action_event"), icon: <MdEvent className="h-5 w-5" />, to: "/style-guide#dashboard" },
-    { label: s("action_news"), icon: <MdArticle className="h-5 w-5" />, to: "/style-guide#dashboard" },
-    { label: s("action_users"), icon: <MdPeople className="h-5 w-5" />, to: "/style-guide#dashboard" },
+    { label: s("action_project"), icon: <MdAdd className="h-5 w-5" />, to: here },
+    { label: s("action_event"), icon: <MdEvent className="h-5 w-5" />, to: here },
+    { label: s("action_news"), icon: <MdArticle className="h-5 w-5" />, to: here },
+    { label: s("action_users"), icon: <MdPeople className="h-5 w-5" />, to: here },
   ];
 
   return (
