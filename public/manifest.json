@@ -1,6 +1,6 @@
 {
-  "short_name": "Haluan",
-  "name": "Haluan",
+  "short_name": "Zylen-Lab",
+  "name": "Zylen-Lab",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#FEC20E",
+  "theme_color": "#042538",
   "background_color": "#ffffff"
 }
