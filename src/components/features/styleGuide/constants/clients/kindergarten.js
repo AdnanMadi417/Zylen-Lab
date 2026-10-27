@@ -14,6 +14,10 @@ const kindergarten = {
   slug: "ui-template-kindergarten-2026",
   name: { en: "Kindergarten", ar: "روضة الأطفال" },
   logo: null,
+  // Kindergarten homepage and sign-in designs (components/designs/kindergarten/)
+  // instead of the generic ones; their extra copy is under
+  // uiTemplates.kindergarten.{website,auth} in the locales.
+  design: "kindergarten",
   colors: {
     brand: {
       50: "#EFF4F6", 100: "#DDE8EC", 200: "#BBD2D8", 300: "#92B7C1", 400: "#5B92A1",

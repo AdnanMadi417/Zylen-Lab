@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { MdLock } from "react-icons/md";
 import { InputField, PasswordField } from "components/form";
 import Checkbox from "components/checkbox";
 import Button from "components/ui/buttons/Button";
+import BrowserChrome from "./BrowserChrome";
 import ClientLogo from "./ClientLogo";
+import { useDesign } from "./designs";
 import useDemoForm from "../hooks/useDemoForm";
 import { useClientName, useGuideT } from "../hooks/useUiTemplate";
 
@@ -50,11 +51,15 @@ export const SignInForm = () => {
 /**
  * Full sign-in screen in the client's branding: brand panel + form panel,
  * mirroring layouts/auth (whose panel hardcodes Haluan's logo and copy).
- * `bare` drops the browser chrome (used in the phone frames).
+ * `bare` drops the browser chrome (used in the phone frames). Clients with a
+ * `design` key get that industry design instead (see designs/index.js).
  */
 const AuthPreview = ({ bare = false }) => {
   const t = useGuideT();
   const clientName = useClientName();
+  const Design = useDesign()?.signin;
+
+  if (Design) return <Design bare={bare} />;
 
   const screen = (
     <div className="relative flex min-h-[640px] bg-slate-50">
@@ -94,17 +99,7 @@ const AuthPreview = ({ bare = false }) => {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-      <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-50 px-4 py-2.5" aria-hidden="true">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-        </div>
-        <div className="flex min-w-0 flex-1 items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs text-slate-400 ring-1 ring-slate-200" dir="ltr">
-          <MdLock className="h-3 w-3 shrink-0" />
-          <span className="truncate">{t("styleGuide.website.url")}/auth/sign-in</span>
-        </div>
-      </div>
+      <BrowserChrome path="/auth/sign-in" />
       {screen}
     </div>
   );

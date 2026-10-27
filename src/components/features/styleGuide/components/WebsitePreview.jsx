@@ -7,12 +7,13 @@ import {
   MdEmail,
   MdPhone,
   MdLocationOn,
-  MdLock,
   MdFormatQuote,
   MdMenu,
 } from "react-icons/md";
 import StarRating from "components/ui/StarRating";
+import BrowserChrome from "./BrowserChrome";
 import ClientLogo from "./ClientLogo";
+import { useDesign } from "./designs";
 import { useClientName, useGuideT } from "../hooks/useUiTemplate";
 
 const NAV = ["home", "about", "programs", "news", "contact"];
@@ -35,29 +36,20 @@ const ImageSlot = ({ className = "" }) => (
  * public components (PublicNavbar, HeroSection, NewsCard, CallToAction,
  * Footer), which fetch Haluan data and can't render inside a template.
  * Copy: styleGuide.website.* (override per client under uiTemplates).
- * `bare` drops the browser chrome (used in the phone frames).
+ * `bare` drops the browser chrome (used in the phone frames). Clients with a
+ * `design` key get that industry design instead (see designs/index.js).
  */
 const WebsitePreview = ({ bare = false }) => {
   const t = useGuideT();
   const s = (k, o) => t(`styleGuide.website.${k}`, o);
   const clientName = useClientName();
+  const Design = useDesign()?.website;
+
+  if (Design) return <Design bare={bare} />;
 
   return (
     <div className={bare ? "bg-white" : "overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"}>
-      {/* ── Browser chrome ── */}
-      {!bare && (
-      <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-50 px-4 py-2.5" aria-hidden="true">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-          <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
-        </div>
-        <div className="flex min-w-0 flex-1 items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs text-slate-400 ring-1 ring-slate-200" dir="ltr">
-          <MdLock className="h-3 w-3 shrink-0" />
-          <span className="truncate">{s("url")}</span>
-        </div>
-      </div>
-      )}
+      {!bare && <BrowserChrome />}
 
       {/* ── Navbar ── */}
       <div className="flex items-center justify-between gap-4 border-b border-slate-100 px-6 py-3.5">

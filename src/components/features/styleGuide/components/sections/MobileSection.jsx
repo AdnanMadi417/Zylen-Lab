@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGuideT } from "../../hooks/useUiTemplate";
+import { useDesign } from "../designs";
 import GuideSection from "../GuideSection";
 
 // Phone viewport (iPhone 14-ish) and the scale it's drawn at on the page.
@@ -46,11 +47,13 @@ const PhoneFrame = ({ screen, title }) => {
 const MobileSection = () => {
   const t = useGuideT();
   const s = (k) => t(`styleGuide.mobile.${k}`);
+  // The design's extra website pages sit right after the homepage.
+  const screens = ["website", ...Object.keys(useDesign()?.pages ?? {}), "dashboard", "signin"];
 
   return (
     <GuideSection id="mobile" title={s("title")} intro={s("intro")}>
       <div className="flex flex-wrap justify-center gap-8 rounded-primary border border-slate-200 bg-slate-50 px-6 py-10">
-        {["website", "dashboard", "signin"].map((screen) => (
+        {screens.map((screen) => (
           <PhoneFrame key={screen} screen={screen} title={s(`screen_${screen}`)} />
         ))}
       </div>

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import WebsitePreview from "./WebsitePreview";
 import DashboardPreview from "./DashboardPreview";
 import AuthPreview from "./AuthPreview";
+import { useDesign } from "./designs";
 import { UiTemplateProvider, useApplyClientColors, useApplyClientFonts, useUiTemplate } from "../hooks/useUiTemplate";
 
 export const SCREENS = { website: WebsitePreview, dashboard: DashboardPreview, signin: AuthPreview };
@@ -12,6 +13,7 @@ const Screen = () => {
   const { screen } = useParams();
   const { i18n } = useTranslation();
   const client = useUiTemplate();
+  const design = useDesign();
   useApplyClientColors(client.colors);
   useApplyClientFonts(client.fonts);
 
@@ -29,7 +31,7 @@ const Screen = () => {
     return () => meta.remove();
   }, []);
 
-  const Component = SCREENS[screen];
+  const Component = SCREENS[screen] ?? design?.pages?.[screen];
   return Component ? <Component bare /> : null;
 };
 
